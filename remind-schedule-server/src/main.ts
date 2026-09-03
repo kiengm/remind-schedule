@@ -9,10 +9,6 @@ async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
 
-  // Global API Prefix (dễ dàng thay đổi phiên bản API qua biến môi trường)
-  const apiPrefix = process.env.API_PREFIX || 'api/v1';
-  app.setGlobalPrefix(apiPrefix);
-
   // Enable CORS
   app.enableCors({
     origin: '*',
@@ -41,9 +37,7 @@ async function bootstrap() {
     .setTitle('Remind Schedule REST API')
     .setDescription('Tài liệu RESTful API hệ thống Remind Schedule thiết kế theo The Clean Architecture')
     .setVersion('1.0.0')
-    .addTag('Authentication', 'Các API xác thực người dùng')
     .addTag('Reminders', 'Các API quản lý lịch nhắc')
-    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);

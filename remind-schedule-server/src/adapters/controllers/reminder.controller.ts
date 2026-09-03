@@ -24,9 +24,10 @@ import { IDeleteReminderUseCase } from '../../application/ports/in/delete-remind
 import { CreateReminderDto } from './dtos/create-reminder.dto';
 import { UpdateReminderDto } from './dtos/update-reminder.dto';
 import { ReminderPresenter, ReminderViewModel } from '../presenters/reminder.presenter';
+import { ENDPOINTS } from '../../infrastructure/common/constants/api.constants';
 
 @ApiTags('Reminders')
-@Controller('reminders')
+@Controller(ENDPOINTS.REMINDERS.ROOT)
 export class ReminderController {
   constructor(
     @Inject(CREATE_REMINDER_USE_CASE)
@@ -39,7 +40,7 @@ export class ReminderController {
     private readonly deleteReminderUseCase: IDeleteReminderUseCase
   ) {}
 
-  @Post()
+  @Post(ENDPOINTS.REMINDERS.CREATE)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Tạo mới một lịch nhắc' })
   @ApiResponse({ status: 201, description: 'Lịch nhắc đã được tạo thành công' })
@@ -53,7 +54,7 @@ export class ReminderController {
     return ReminderPresenter.toViewModel(entity);
   }
 
-  @Get()
+  @Get(ENDPOINTS.REMINDERS.LIST)
   @ApiOperation({ summary: 'Lấy danh sách tất cả các lịch nhắc' })
   @ApiResponse({ status: 200, description: 'Danh sách lịch nhắc sắp xếp theo thời gian' })
   async findAll(): Promise<ReminderViewModel[]> {
@@ -61,7 +62,7 @@ export class ReminderController {
     return ReminderPresenter.toViewModelList(entities);
   }
 
-  @Get(':id')
+  @Get(ENDPOINTS.REMINDERS.BY_ID)
   @ApiOperation({ summary: 'Lấy chi tiết một lịch nhắc theo ID' })
   @ApiParam({ name: 'id', description: 'ID của lịch nhắc' })
   @ApiResponse({ status: 200, description: 'Thông tin chi tiết lịch nhắc' })
@@ -71,7 +72,7 @@ export class ReminderController {
     return ReminderPresenter.toViewModel(entity);
   }
 
-  @Patch(':id')
+  @Patch(ENDPOINTS.REMINDERS.UPDATE)
   @ApiOperation({ summary: 'Cập nhật thông tin lịch nhắc' })
   @ApiParam({ name: 'id', description: 'ID của lịch nhắc' })
   @ApiResponse({ status: 200, description: 'Cập nhật thành công' })
@@ -91,7 +92,7 @@ export class ReminderController {
     return ReminderPresenter.toViewModel(entity);
   }
 
-  @Delete(':id')
+  @Delete(ENDPOINTS.REMINDERS.DELETE)
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Xóa một lịch nhắc' })
   @ApiParam({ name: 'id', description: 'ID của lịch nhắc' })

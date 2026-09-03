@@ -5,4 +5,6 @@ export * from './badge';
 export * from './label';
 export * from './card';
 export * from './avatar';
-
+export * from './checkbox';
+export * from './material-icon';
+export { MaterialIcon } from './material-icon';

@@ -36,13 +36,21 @@ export const FormField: React.FC<FormFieldProps> = ({
         )}
         {multiline ? (
           <Textarea
-            className={cn(icon && 'pl-10', error && 'border-destructive focus-visible:ring-destructive')}
             {...textareaProps}
+            className={cn(
+              icon && 'pl-10',
+              error && 'border-destructive focus-visible:ring-destructive',
+              textareaProps?.className
+            )}
           />
         ) : (
           <Input
-            className={cn(icon && 'pl-10', error && 'border-destructive focus-visible:ring-destructive')}
             {...inputProps}
+            className={cn(
+              icon && 'pl-10',
+              error && 'border-destructive focus-visible:ring-destructive',
+              inputProps?.className
+            )}
           />
         )}
       </div>

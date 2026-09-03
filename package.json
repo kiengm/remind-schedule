@@ -1,0 +1,18 @@
+{
+  "name": "remind-schedule",
+  "private": true,
+  "packageManager": "yarn@4.14.1",
+  "workspaces": [
+    "remind-schedule-server",
+    "remind-schedule-client"
+  ],
+  "scripts": {
+    "server": "yarn --cwd remind-schedule-server",
+    "client": "yarn --cwd remind-schedule-client",
+    "server:dev": "yarn --cwd remind-schedule-server dev",
+    "client:dev": "yarn --cwd remind-schedule-client dev",
+    "server:build": "yarn --cwd remind-schedule-server build",
+    "client:build": "yarn --cwd remind-schedule-client build"
+  }
+}
+

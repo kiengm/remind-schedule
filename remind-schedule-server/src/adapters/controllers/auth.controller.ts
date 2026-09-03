@@ -23,9 +23,10 @@ import { RegisterDto } from './dtos/register.dto';
 import { LoginDto } from './dtos/login.dto';
 import { AuthPresenter, AuthResponseViewModel, UserViewModel } from '../presenters/auth.presenter';
 import { JwtAuthGuard } from '../../infrastructure/common/guards/jwt-auth.guard';
+import { ENDPOINTS } from '../../infrastructure/common/constants/api.constants';
 
 @ApiTags('Authentication')
-@Controller('auth')
+@Controller(ENDPOINTS.AUTH.ROOT)
 export class AuthController {
   constructor(
     @Inject(REGISTER_USE_CASE)
@@ -36,7 +37,7 @@ export class AuthController {
     private readonly userRepository: IUserRepositoryPort
   ) {}
 
-  @Post('register')
+  @Post(ENDPOINTS.AUTH.REGISTER)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Đăng ký tài khoản mới' })
   @ApiResponse({ status: 201, description: 'Đăng ký thành công, trả về thông tin user và accessToken' })
@@ -51,7 +52,7 @@ export class AuthController {
     return AuthPresenter.toAuthResponse(result.user, result.accessToken);
   }
 
-  @Post('login')
+  @Post(ENDPOINTS.AUTH.LOGIN)
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Đăng nhập vào hệ thống' })
   @ApiResponse({ status: 200, description: 'Đăng nhập thành công, trả về accessToken' })
@@ -64,7 +65,7 @@ export class AuthController {
     return AuthPresenter.toAuthResponse(result.user, result.accessToken);
   }
 
-  @Get('me')
+  @Get(ENDPOINTS.AUTH.ME)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Lấy thông tin tài khoản hiện tại từ Token' })
