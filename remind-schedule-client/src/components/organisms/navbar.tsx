@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { CalendarDays, Plus, RefreshCw, LogIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../atoms/button';
 import { UserNav } from '../molecules/user-nav';
+import { LanguageSwitcher } from '../molecules/language-switcher';
 import { User } from '@/types/auth';
 
 export interface NavbarProps {
@@ -21,6 +23,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onAuthOpen,
   onLogout,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
@@ -31,26 +35,28 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <h1 className="text-lg font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              Remind Schedule
+              {t('common.appName')}
             </h1>
             <p className="text-xs text-muted-foreground font-medium hidden sm:block">
-              Atomic Design + Shadcn UI Base
+              {t('common.subtitle')}
             </p>
           </div>
         </div>
 
         {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
+          <LanguageSwitcher />
+
           <Button
             variant="ghost"
             size="sm"
             onClick={onRefresh}
             disabled={loading}
             className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 rounded-xl"
-            title="Làm mới dữ liệu"
+            title={t('common.refresh')}
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-primary' : ''}`} />
-            <span className="hidden sm:inline">Làm mới</span>
+            <span className="hidden sm:inline">{t('common.refresh')}</span>
           </Button>
 
           <Button
@@ -60,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="inline-flex items-center gap-1.5 rounded-xl shadow-sm shadow-primary/20"
           >
             <Plus className="w-4 h-4" />
-            <span>Tạo lời nhắc</span>
+            <span>{t('common.create')}</span>
           </Button>
 
           {currentUser ? (
@@ -73,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="inline-flex items-center gap-1.5 rounded-xl"
             >
               <LogIn className="w-4 h-4" />
-              <span>Đăng nhập</span>
+              <span>{t('common.login')}</span>
             </Button>
           )}
         </div>
@@ -81,4 +87,5 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+
 

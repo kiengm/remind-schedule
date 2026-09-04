@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../atoms/button';
 import { MaterialIcon } from '../atoms/material-icon';
+import { LanguageSwitcher } from '../molecules/language-switcher';
 import { cn } from '@/lib/utils';
 
 export interface AuthHeaderProps {
@@ -14,6 +16,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
   onToggleMode,
   className,
 }) => {
+  const { t } = useTranslation();
   const isLogin = mode === 'login';
 
   return (
@@ -33,15 +36,17 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
             <MaterialIcon name="calendar_month" size={22} filled />
           </div>
           <span className="text-xl font-bold tracking-tight text-foreground">
-            Remind Schedule
+            {t('common.appName')}
           </span>
         </a>
       </div>
 
-      {/* Switch Mode Prompt & Button (Bên phải - theo mẫu sp-header) */}
+      {/* Switch Mode Prompt & Button + Language Switcher (Bên phải) */}
       <div className="flex items-center gap-3">
+        <LanguageSwitcher />
+
         <span className="text-sm text-muted-foreground hidden sm:inline-block">
-          {isLogin ? "Don't have an account?" : 'Already have an account?'}
+          {isLogin ? t('auth.noAccount') : t('auth.haveAccount')}
         </span>
         <Button
           type="button"
@@ -50,10 +55,11 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
           onClick={() => onToggleMode?.(isLogin ? 'signup' : 'login')}
           className="rounded-full px-5 font-medium border-primary/40 text-primary hover:bg-primary/10 hover:text-primary transition-all active:scale-95"
         >
-          {isLogin ? 'Sign Up' : 'Sign In'}
+          {isLogin ? t('auth.signUpBtn') : t('auth.signInBtn')}
         </Button>
       </div>
     </header>
   );
 };
+
 

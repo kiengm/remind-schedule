@@ -21,7 +21,7 @@ export class JwtAuthGuard implements CanActivate {
     const authHeader = request.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new UnauthorizedException('Không tìm thấy Bearer token xác thực');
+      throw new UnauthorizedException('auth.tokenMissing');
     }
 
     const token = authHeader.split(' ')[1];
@@ -30,8 +30,10 @@ export class JwtAuthGuard implements CanActivate {
       (request as any).user = payload;
       return true;
     } catch {
-      throw new UnauthorizedException('Token xác thực không hợp lệ hoặc đã hết hạn');
+      throw new UnauthorizedException('auth.tokenInvalid');
     }
+
+
   }
 }
 

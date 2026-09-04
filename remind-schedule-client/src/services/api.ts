@@ -10,11 +10,16 @@ export const apiClient = axios.create({
   },
 });
 
-// Gắn Bearer Token tự động từ localStorage vào mỗi request
+// Gắn Bearer Token và Accept-Language tự động từ localStorage vào mỗi request
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const lang = localStorage.getItem('app_lang') || 'vi';
+
+  if (config.headers) {
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    config.headers['Accept-Language'] = lang;
   }
   return config;
 });

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { LogOut, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Avatar } from '../atoms/avatar';
 import { Button } from '../atoms/button';
 import { User } from '@/types/auth';
@@ -10,6 +11,8 @@ export interface UserNavProps {
 }
 
 export const UserNav: React.FC<UserNavProps> = ({ user, onLogout }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex items-center gap-2 pl-2 border-l border-border">
       <div className="flex items-center gap-2.5 bg-muted/60 py-1 px-3 rounded-xl">
@@ -29,11 +32,12 @@ export const UserNav: React.FC<UserNavProps> = ({ user, onLogout }) => {
         size="icon"
         onClick={onLogout}
         className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl"
-        title="Đăng xuất"
+        title={t('common.logout')}
       >
         <LogOut className="w-4 h-4" />
       </Button>
     </div>
   );
 };
+
 

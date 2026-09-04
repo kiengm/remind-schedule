@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Calendar, CheckCircle2, Circle, Clock, Trash2, AlertTriangle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Card } from '../atoms/card';
 import { Badge } from '../atoms/badge';
 import { Button } from '../atoms/button';
@@ -12,28 +13,32 @@ export interface ReminderItemProps {
   onDelete: (id: string) => void;
 }
 
-const priorityBadgeMap: Record<ReminderPriority, { variant: 'success' | 'info' | 'warning' | 'urgent'; label: string }> = {
-  LOW: { variant: 'success', label: 'Thấp' },
-  MEDIUM: { variant: 'info', label: 'Bình thường' },
-  HIGH: { variant: 'warning', label: 'Cao' },
-  URGENT: { variant: 'urgent', label: 'Khẩn cấp' },
+const priorityBadgeVariantMap: Record<ReminderPriority, 'success' | 'info' | 'warning' | 'urgent'> = {
+  LOW: 'success',
+  MEDIUM: 'info',
+  HIGH: 'warning',
+  URGENT: 'urgent',
 };
 
 export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, onDelete }) => {
+  const { t, i18n } = useTranslation();
   const isCompleted = reminder.status === 'COMPLETED';
   const scheduledDate = new Date(reminder.scheduledAt);
-  const formattedDate = scheduledDate.toLocaleDateString('vi-VN', {
+  const locale = i18n.language?.startsWith('en') ? 'en-US' : 'vi-VN';
+
+  const formattedDate = scheduledDate.toLocaleDateString(locale, {
     weekday: 'short',
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
   });
-  const formattedTime = scheduledDate.toLocaleTimeString('vi-VN', {
+  const formattedTime = scheduledDate.toLocaleTimeString(locale, {
     hour: '2-digit',
     minute: '2-digit',
   });
 
-  const priorityMeta = priorityBadgeMap[reminder.priority] || priorityBadgeMap.MEDIUM;
+  const badgeVariant = priorityBadgeVariantMap[reminder.priority] || 'info';
+  const priorityLabel = t(`priority.${reminder.priority}`);
 
   return (
     <Card
@@ -52,7 +57,7 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
           type="button"
           onClick={() => onToggle(reminder)}
           className="mt-0.5 text-muted-foreground hover:text-primary transition-colors focus:outline-none"
-          title={isCompleted ? 'Đánh dấu chưa hoàn thành' : 'Đánh dấu đã hoàn thành'}
+          title={isCompleted ? t('reminders.markPending') : t('reminders.markCompleted')}
         >
           {isCompleted ? (
             <CheckCircle2 className="w-6 h-6 text-emerald-600 fill-emerald-50" />
@@ -64,13 +69,13 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
         {/* Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1.5">
-            <Badge variant={priorityMeta.variant}>
-              {priorityMeta.label}
+            <Badge variant={badgeVariant}>
+              {priorityLabel}
             </Badge>
 
             {reminder.isOverdue && !isCompleted && (
               <Badge variant="urgent" className="flex items-center gap-1 animate-pulse">
-                <AlertTriangle className="w-3 h-3" /> Quá hạn
+                <AlertTriangle className="w-3 h-3" /> {t('reminders.overdueBadge')}
               </Badge>
             )}
           </div>
@@ -114,7 +119,7 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
           size="icon"
           onClick={() => onDelete(reminder.id)}
           className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl shrink-0"
-          title="Xóa lịch nhắc"
+          title={t('reminders.deleteTitle')}
         >
           <Trash2 className="w-4 h-4" />
         </Button>
@@ -122,4 +127,5 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
     </Card>
   );
 };
+
 

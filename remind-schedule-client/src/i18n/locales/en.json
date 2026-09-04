@@ -1,0 +1,84 @@
+{
+  "common": {
+    "appName": "Remind Schedule",
+    "subtitle": "Smart Task & Reminder Management",
+    "loading": "Loading...",
+    "refresh": "Refresh",
+    "create": "Create Reminder",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "retry": "Retry",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "language": "Language",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  },
+  "auth": {
+    "loginTitle": "Sign in to Remind Schedule",
+    "loginSubtitle": "Enter your details below",
+    "signupTitle": "Create an account",
+    "signupSubtitle": "Enter your information to get started",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signInBtn": "Sign In",
+    "signUpBtn": "Sign Up",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "0912345678 (optional)",
+    "rememberMe": "Keep me logged in on this device",
+    "termsNotice": "By continuing, you agree to our Terms of Service and Privacy Policy.",
+    "submitting": "Processing...",
+    "defaultError": "An error occurred, please try again"
+  },
+  "stats": {
+    "total": "Total Reminders",
+    "pending": "Pending Tasks",
+    "completed": "Completed",
+    "overdue": "Overdue"
+  },
+  "filters": {
+    "all": "All",
+    "pending": "Pending",
+    "completed": "Completed",
+    "overdue": "Overdue",
+    "searchPlaceholder": "Search reminders..."
+  },
+  "reminders": {
+    "emptyTitle": "No reminders yet",
+    "emptyDesc": "No reminders match the current filter. Create a new reminder to get started.",
+    "createFirst": "Create first reminder",
+    "loadingList": "Loading reminders...",
+    "markCompleted": "Mark as completed",
+    "markPending": "Mark as pending",
+    "overdueBadge": "Overdue",
+    "deleteTitle": "Delete reminder"
+  },
+  "priority": {
+    "LOW": "Low",
+    "MEDIUM": "Medium",
+    "HIGH": "High",
+    "URGENT": "Urgent"
+  },
+  "modal": {
+    "title": "Create New Reminder",
+    "titleLabel": "Title",
+    "titlePlaceholder": "e.g., Weekly team sync, submit report...",
+    "descLabel": "Description",
+    "descPlaceholder": "Enter details or notes (optional)...",
+    "scheduledAtLabel": "Scheduled Time",
+    "priorityLabel": "Priority Level",
+    "submitBtn": "Create Reminder",
+    "creating": "Creating...",
+    "errTitleRequired": "Please enter reminder title",
+    "errDateRequired": "Please select scheduled time",
+    "defaultError": "An error occurred while creating reminder"
+  }
+}
+

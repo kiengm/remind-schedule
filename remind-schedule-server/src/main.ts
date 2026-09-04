@@ -1,13 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './modules/app.module';
 import { AllExceptionsFilter } from './infrastructure/common/filters/http-exception.filter';
 import { TransformResponseInterceptor } from './infrastructure/common/interceptors/transform-response.interceptor';
+import { I18nService } from './infrastructure/i18n/i18n.service';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
+
+  const i18nService = app.get(I18nService);
 
   // Enable CORS
   app.enableCors({
@@ -16,7 +19,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Global Validation Pipe
+  // Global Validation Pipe with i18n support
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -25,12 +28,14 @@ async function bootstrap() {
       transformOptions: {
         enableImplicitConversion: true,
       },
+      exceptionFactory: (errors) => new BadRequestException(errors),
     })
   );
 
   // Global Interceptor & Filter
   app.useGlobalInterceptors(new TransformResponseInterceptor());
-  app.useGlobalFilters(new AllExceptionsFilter());
+  app.useGlobalFilters(new AllExceptionsFilter(i18nService));
+
 
   // Swagger Documentation Setup
   const config = new DocumentBuilder()

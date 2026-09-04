@@ -1,0 +1,84 @@
+{
+  "common": {
+    "appName": "Remind Schedule",
+    "subtitle": "Quản lý công việc & Lịch nhắc thông minh",
+    "loading": "Đang tải...",
+    "refresh": "Làm mới",
+    "create": "Tạo lời nhắc",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "retry": "Thử lại",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "language": "Ngôn ngữ",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  },
+  "auth": {
+    "loginTitle": "Đăng nhập vào Remind Schedule",
+    "loginSubtitle": "Nhập thông tin chi tiết của bạn bên dưới",
+    "signupTitle": "Tạo tài khoản mới",
+    "signupSubtitle": "Nhập thông tin của bạn để bắt đầu",
+    "noAccount": "Chưa có tài khoản?",
+    "haveAccount": "Đã có tài khoản?",
+    "signInBtn": "Đăng nhập",
+    "signUpBtn": "Đăng ký",
+    "nameLabel": "Họ và tên",
+    "namePlaceholder": "Nguyễn Văn A",
+    "emailLabel": "Địa chỉ Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Mật khẩu",
+    "passwordPlaceholder": "••••••••",
+    "phoneLabel": "Số điện thoại",
+    "phonePlaceholder": "0912345678 (tùy chọn)",
+    "rememberMe": "Duy trì đăng nhập trên thiết bị này",
+    "termsNotice": "Bằng việc tiếp tục, bạn đồng ý với Điều khoản Dịch vụ và Chính sách Bảo mật của chúng tôi.",
+    "submitting": "Đang xử lý...",
+    "defaultError": "Đã có lỗi xảy ra, vui lòng thử lại"
+  },
+  "stats": {
+    "total": "Tổng số lời nhắc",
+    "pending": "Đang chờ thực hiện",
+    "completed": "Đã hoàn thành",
+    "overdue": "Quá hạn"
+  },
+  "filters": {
+    "all": "Tất cả",
+    "pending": "Đang chờ",
+    "completed": "Hoàn thành",
+    "overdue": "Quá hạn",
+    "searchPlaceholder": "Tìm kiếm lời nhắc..."
+  },
+  "reminders": {
+    "emptyTitle": "Chưa có lời nhắc nào",
+    "emptyDesc": "Không tìm thấy lời nhắc phù hợp với bộ lọc hiện tại. Hãy tạo lời nhắc mới để bắt đầu.",
+    "createFirst": "Tạo lời nhắc đầu tiên",
+    "loadingList": "Đang tải dữ liệu lịch nhắc...",
+    "markCompleted": "Đánh dấu đã hoàn thành",
+    "markPending": "Đánh dấu chưa hoàn thành",
+    "overdueBadge": "Quá hạn",
+    "deleteTitle": "Xóa lịch nhắc"
+  },
+  "priority": {
+    "LOW": "Thấp",
+    "MEDIUM": "Bình thường",
+    "HIGH": "Cao",
+    "URGENT": "Khẩn cấp"
+  },
+  "modal": {
+    "title": "Tạo lời nhắc mới",
+    "titleLabel": "Tiêu đề",
+    "titlePlaceholder": "VD: Họp định kỳ tuần, nộp báo cáo...",
+    "descLabel": "Mô tả chi tiết",
+    "descPlaceholder": "Nhập nội dung chi tiết hoặc ghi chú (không bắt buộc)...",
+    "scheduledAtLabel": "Thời gian nhắc nhở",
+    "priorityLabel": "Mức độ ưu tiên",
+    "submitBtn": "Tạo lời nhắc",
+    "creating": "Đang tạo...",
+    "errTitleRequired": "Vui lòng nhập tiêu đề lời nhắc",
+    "errDateRequired": "Vui lòng chọn thời gian nhắc",
+    "defaultError": "Có lỗi xảy ra khi tạo lời nhắc"
+  }
+}
+

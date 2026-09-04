@@ -75,9 +75,11 @@ export class AuthController {
     const payload = (req as any).user;
     const user = await this.userRepository.findById(payload.userId || payload.sub);
     if (!user) {
-      throw new Error('Không tìm thấy tài khoản người dùng');
+      throw new Error('auth.userNotFound');
     }
     return AuthPresenter.toUserViewModel(user);
+
+
   }
 }
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { X, Clock, Plus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../atoms/button';
 import { FormField } from '../molecules/form-field';
 import { Label } from '../atoms/label';
@@ -13,6 +14,7 @@ export interface ReminderModalProps {
 }
 
 export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, onSubmit }) => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const defaultDate = new Date(Date.now() + 60 * 60 * 1000).toISOString().slice(0, 16);
@@ -26,11 +28,11 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) {
-      setFormError('Vui lòng nhập tiêu đề lời nhắc');
+      setFormError(t('modal.errTitleRequired'));
       return;
     }
     if (!scheduledAt) {
-      setFormError('Vui lòng chọn thời gian nhắc');
+      setFormError(t('modal.errDateRequired'));
       return;
     }
 
@@ -47,7 +49,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
       setDescription('');
       onClose();
     } catch (err: any) {
-      setFormError(err?.message || 'Có lỗi xảy ra khi tạo lời nhắc');
+      setFormError(err?.message || t('modal.defaultError'));
     } finally {
       setLoading(false);
     }
@@ -62,7 +64,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
             <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold">
               <Clock className="w-4 h-4" />
             </div>
-            <h2 className="text-lg font-semibold text-foreground">Tạo lời nhắc mới</h2>
+            <h2 className="text-lg font-semibold text-foreground">{t('modal.title')}</h2>
           </div>
           <Button
             variant="ghost"
@@ -83,10 +85,10 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
           )}
 
           <FormField
-            label="Tiêu đề"
+            label={t('modal.titleLabel')}
             required
             inputProps={{
-              placeholder: 'VD: Họp định kỳ tuần, nộp báo cáo...',
+              placeholder: t('modal.titlePlaceholder'),
               value: title,
               onChange: (e) => setTitle(e.target.value),
               required: true,
@@ -94,11 +96,11 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
           />
 
           <FormField
-            label="Mô tả chi tiết"
+            label={t('modal.descLabel')}
             multiline
             textareaProps={{
               rows: 3,
-              placeholder: 'Nhập ghi chú thêm nếu cần...',
+              placeholder: t('modal.descPlaceholder'),
               value: description,
               onChange: (e) => setDescription(e.target.value),
             }}
@@ -106,7 +108,7 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
-              label="Thời gian nhắc"
+              label={t('modal.scheduledAtLabel')}
               required
               inputProps={{
                 type: 'datetime-local',
@@ -117,16 +119,16 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
             />
 
             <div className="space-y-1.5">
-              <Label>Mức độ ưu tiên</Label>
+              <Label>{t('modal.priorityLabel')}</Label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as ReminderPriority)}
                 className="flex h-10 w-full rounded-xl border border-input bg-background px-3.5 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors cursor-pointer"
               >
-                <option value="LOW">Thấp (Low)</option>
-                <option value="MEDIUM">Bình thường (Medium)</option>
-                <option value="HIGH">Cao (High)</option>
-                <option value="URGENT">Khẩn cấp (Urgent)</option>
+                <option value="LOW">{t('priority.LOW')}</option>
+                <option value="MEDIUM">{t('priority.MEDIUM')}</option>
+                <option value="HIGH">{t('priority.HIGH')}</option>
+                <option value="URGENT">{t('priority.URGENT')}</option>
               </select>
             </div>
           </div>
@@ -134,11 +136,11 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
           {/* Actions */}
           <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
             <Button type="button" variant="outline" onClick={onClose}>
-              Hủy
+              {t('common.cancel')}
             </Button>
             <Button type="submit" disabled={loading} className="gap-1.5 shadow-sm shadow-primary/20">
               <Plus className="w-4 h-4" />
-              {loading ? 'Đang tạo...' : 'Tạo lời nhắc'}
+              {loading ? t('modal.creating') : t('modal.submitBtn')}
             </Button>
           </div>
         </form>
@@ -146,4 +148,5 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
     </div>
   );
 };
+
 

@@ -14,19 +14,21 @@ export class LoginInteractor implements ILoginUseCase {
     // 1. Tìm tài khoản theo email
     const user = await this.userRepository.findByEmail(command.email);
     if (!user) {
-      throw new Error('Email hoặc mật khẩu không chính xác');
+      throw new Error('auth.emailPasswordInvalid');
     }
 
     // 2. Kiểm tra trạng thái kích hoạt tài khoản
     if (!user.isActive) {
-      throw new Error('Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên');
+      throw new Error('auth.userDisabled');
     }
 
     // 3. So khớp mật khẩu
     const isPasswordValid = await this.passwordHasher.compare(command.password, user.password);
     if (!isPasswordValid) {
-      throw new Error('Email hoặc mật khẩu không chính xác');
+      throw new Error('auth.emailPasswordInvalid');
     }
+
+
 
     // 4. Sinh JWT Access Token
     const accessToken = await this.tokenService.generateToken({

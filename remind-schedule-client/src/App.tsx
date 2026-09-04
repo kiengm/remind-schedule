@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useReminders } from '@/features/reminders/hooks/useReminders';
 import { Navbar, ReminderItem, ReminderStatsBar, ReminderModal } from '@/components/organisms';
 import { SearchBox, FilterTabs, FilterTabOption } from '@/components/molecules';
@@ -8,6 +9,7 @@ import { ReminderStatus } from '@/types/reminder';
 import { User } from '@/types/auth';
 
 export function App() {
+  const { t } = useTranslation();
   const {
     reminders,
     loading,
@@ -50,11 +52,11 @@ export function App() {
 
   // Cấu hình các tab lọc trạng thái
   const filterOptions: FilterTabOption<'ALL' | ReminderStatus | 'OVERDUE'>[] = useMemo(() => [
-    { key: 'ALL', label: 'Tất cả', count: reminders.length },
-    { key: 'PENDING', label: 'Đang chờ', count: reminders.filter((r) => r.status === 'PENDING').length },
-    { key: 'COMPLETED', label: 'Hoàn thành', count: reminders.filter((r) => r.status === 'COMPLETED').length },
-    { key: 'OVERDUE', label: 'Quá hạn', count: reminders.filter((r) => r.isOverdue && r.status === 'PENDING').length, highlight: true },
-  ], [reminders]);
+    { key: 'ALL', label: t('filters.all'), count: reminders.length },
+    { key: 'PENDING', label: t('filters.pending'), count: reminders.filter((r) => r.status === 'PENDING').length },
+    { key: 'COMPLETED', label: t('filters.completed'), count: reminders.filter((r) => r.status === 'COMPLETED').length },
+    { key: 'OVERDUE', label: t('filters.overdue'), count: reminders.filter((r) => r.isOverdue && r.status === 'PENDING').length, highlight: true },
+  ], [reminders, t]);
 
   const filteredReminders = useMemo(() => {
     return reminders.filter((item) => {
@@ -98,7 +100,7 @@ export function App() {
               onClick={() => fetchReminders()}
               className="underline font-semibold hover:opacity-80 ml-4"
             >
-              Thử lại
+              {t('common.retry')}
             </button>
           </div>
         )}
@@ -116,7 +118,7 @@ export function App() {
           <SearchBox
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Tìm kiếm lời nhắc..."
+            placeholder={t('filters.searchPlaceholder')}
           />
         </Card>
 
@@ -124,22 +126,22 @@ export function App() {
         {loading && reminders.length === 0 ? (
           <div className="text-center py-16">
             <MaterialIcon name="progress_activity" size={32} className="text-primary animate-spin mx-auto mb-3" />
-            <p className="text-muted-foreground text-sm">Đang tải dữ liệu lịch nhắc...</p>
+            <p className="text-muted-foreground text-sm">{t('reminders.loadingList')}</p>
           </div>
         ) : filteredReminders.length === 0 ? (
           <Card className="text-center py-16 border-dashed">
             <CardContent className="flex flex-col items-center justify-center p-0">
               <MaterialIcon name="event_busy" size={48} className="text-muted-foreground/40 mx-auto mb-3" />
-              <h3 className="text-base font-semibold text-foreground">Chưa có lời nhắc nào</h3>
+              <h3 className="text-base font-semibold text-foreground">{t('reminders.emptyTitle')}</h3>
               <p className="text-muted-foreground text-sm max-w-sm mx-auto mt-1 mb-4">
-                Không tìm thấy lời nhắc phù hợp với bộ lọc hiện tại. Hãy tạo lời nhắc mới để bắt đầu.
+                {t('reminders.emptyDesc')}
               </p>
               <Button
                 onClick={() => setIsModalOpen(true)}
                 className="gap-1.5 shadow-sm shadow-primary/20"
               >
                 <MaterialIcon name="add" size={18} />
-                Tạo lời nhắc đầu tiên
+                {t('reminders.createFirst')}
               </Button>
             </CardContent>
           </Card>
@@ -170,3 +172,4 @@ export function App() {
 }
 
 export default App;
+
