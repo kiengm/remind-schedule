@@ -18,13 +18,13 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
 }) => {
   return (
     <div className={cn('relative w-full sm:w-64', className)}>
-      <Search className="w-4 h-4 text-muted-foreground absolute left-3.5 top-1/2 -translate-y-1/2" />
+      <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <Input
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="pl-9.5 h-9 text-xs rounded-xl"
+        className="h-9 rounded-xl pl-9 text-xs"
       />
     </div>
   );
