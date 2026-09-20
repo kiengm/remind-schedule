@@ -1,5 +1,11 @@
 import { apiClient } from '../../../services/api';
-import { AuthResponse, LoginPayload, RegisterPayload, User } from '../../../types/auth';
+import {
+  AuthResponse,
+  LoginPayload,
+  RefreshTokenResponse,
+  RegisterPayload,
+  User,
+} from '../../../types/auth';
 import { ApiResponse } from '../../../types/reminder';
 
 export const authApi = {
@@ -11,6 +17,22 @@ export const authApi = {
   async login(payload: LoginPayload): Promise<AuthResponse> {
     const res = await apiClient.post<ApiResponse<AuthResponse>>('/auth/login', payload);
     return res.data.data;
+  },
+
+  async refreshToken(refreshToken: string): Promise<RefreshTokenResponse> {
+    const res = await apiClient.post<ApiResponse<RefreshTokenResponse>>(
+      '/auth/refresh-token',
+      { refreshToken }
+    );
+    return res.data.data;
+  },
+
+  async logout(): Promise<void> {
+    try {
+      await apiClient.post('/auth/logout');
+    } catch {
+      // Bỏ qua lỗi nếu token đã hết hạn trên server
+    }
   },
 
   async getProfile(): Promise<User> {

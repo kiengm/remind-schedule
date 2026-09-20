@@ -15,6 +15,12 @@ export interface UserViewModel {
 export interface AuthResponseViewModel {
   user: UserViewModel;
   accessToken: string;
+  refreshToken: string;
+}
+
+export interface TokensViewModel {
+  accessToken: string;
+  refreshToken: string;
 }
 
 export class AuthPresenter {
@@ -31,10 +37,22 @@ export class AuthPresenter {
     };
   }
 
-  static toAuthResponse(userEntity: UserEntity, accessToken: string): AuthResponseViewModel {
+  static toAuthResponse(
+    userEntity: UserEntity,
+    accessToken: string,
+    refreshToken: string
+  ): AuthResponseViewModel {
     return {
       user: this.toUserViewModel(userEntity),
       accessToken,
+      refreshToken,
+    };
+  }
+
+  static toTokensViewModel(accessToken: string, refreshToken: string): TokensViewModel {
+    return {
+      accessToken,
+      refreshToken,
     };
   }
 }

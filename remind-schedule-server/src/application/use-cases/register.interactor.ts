@@ -40,16 +40,22 @@ export class RegisterInteractor implements IRegisterUseCase {
     // 5. Lưu vào Database thông qua Output Port
     const savedUser = await this.userRepository.save(user);
 
-    // 6. Tạo JWT Token
-    const accessToken = await this.tokenService.generateToken({
+    // 6. Sinh cặp JWT Tokens (Access Token 15m, Refresh Token 7d)
+    const { accessToken, refreshToken } = await this.tokenService.generateTokens({
       userId: savedUser.id,
       email: savedUser.email,
       role: savedUser.role,
     });
 
+    // 7. Hash Refresh Token và lưu vào Database
+    const hashedRefreshToken = await this.passwordHasher.hash(refreshToken);
+    await this.userRepository.updateRefreshToken(savedUser.id, hashedRefreshToken);
+    savedUser.updateRefreshTokenHash(hashedRefreshToken);
+
     return {
       user: savedUser,
       accessToken,
+      refreshToken,
     };
   }
 }

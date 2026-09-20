@@ -10,6 +10,7 @@ export interface RegisterCommand {
 export interface AuthResult {
   user: UserEntity;
   accessToken: string;
+  refreshToken: string;
 }
 
 export interface IRegisterUseCase {

@@ -22,6 +22,7 @@ export class PrismaUserRepository implements IUserRepositoryPort {
         avatar: user.avatar,
         role: user.role as PrismaRole,
         isActive: user.isActive,
+        refreshTokenHash: user.refreshTokenHash,
       },
     });
 
@@ -59,10 +60,20 @@ export class PrismaUserRepository implements IUserRepositoryPort {
         avatar: user.avatar,
         role: user.role as PrismaRole,
         isActive: user.isActive,
+        refreshTokenHash: user.refreshTokenHash,
       },
     });
 
     return this.toDomain(updated);
+  }
+
+  async updateRefreshToken(userId: string, refreshTokenHash: string | null): Promise<void> {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        refreshTokenHash,
+      },
+    });
   }
 
   // Data Mapper: Prisma User Model -> Core Domain UserEntity
@@ -76,6 +87,7 @@ export class PrismaUserRepository implements IUserRepositoryPort {
       avatar: record.avatar,
       role: record.role as unknown as Role,
       isActive: record.isActive,
+      refreshTokenHash: record.refreshTokenHash,
       createdAt: record.createdAt,
       updatedAt: record.updatedAt,
     });

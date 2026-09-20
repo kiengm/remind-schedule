@@ -15,11 +15,15 @@ export const ENDPOINTS = {
     ROOT: `${API_PREFIX}/auth`,
     REGISTER: 'register',
     LOGIN: 'login',
+    REFRESH_TOKEN: 'refresh-token',
+    LOGOUT: 'logout',
     ME: 'me',
     // Đường dẫn tuyệt đối (tiện lợi cho Client/Test)
     FULL: {
       REGISTER: `/${API_PREFIX}/auth/register`,
       LOGIN: `/${API_PREFIX}/auth/login`,
+      REFRESH_TOKEN: `/${API_PREFIX}/auth/refresh-token`,
+      LOGOUT: `/${API_PREFIX}/auth/logout`,
       ME: `/${API_PREFIX}/auth/me`,
     },
   },

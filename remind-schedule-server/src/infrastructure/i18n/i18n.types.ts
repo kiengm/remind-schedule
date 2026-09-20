@@ -9,8 +9,12 @@ export interface I18nDictionary {
     userNotFound: string;
     tokenMissing: string;
     tokenInvalid: string;
+    refreshTokenRequired: string;
+    refreshTokenInvalid: string;
+    refreshTokenRevoked: string;
     registeredSuccess: string;
     loginSuccess: string;
+    logoutSuccess: string;
   };
   reminders: {
     notFound: string;

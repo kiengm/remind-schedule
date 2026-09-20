@@ -9,8 +9,12 @@ export const enLocale: I18nDictionary = {
     userNotFound: 'User account not found',
     tokenMissing: 'Bearer authentication token not found',
     tokenInvalid: 'Authentication token is invalid or has expired',
+    refreshTokenRequired: 'Refresh token is required',
+    refreshTokenInvalid: 'Refresh token is invalid or has expired',
+    refreshTokenRevoked: 'Refresh token has been revoked. Please sign in again',
     registeredSuccess: 'Account registered successfully',
     loginSuccess: 'Logged in successfully',
+    logoutSuccess: 'Logged out successfully',
   },
   reminders: {
     notFound: 'Reminder with ID "{id}" not found',

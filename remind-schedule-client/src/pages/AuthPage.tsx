@@ -10,7 +10,7 @@ import { authApi } from '@/features/auth/api/auth.api';
 import { User } from '@/types/auth';
 
 export interface AuthPageProps {
-  onSuccess: (user: User, token: string) => void;
+  onSuccess: (user: User, token: string, refreshToken: string) => void;
   defaultMode?: 'login' | 'signup';
 }
 
@@ -38,7 +38,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
     try {
       if (isLogin) {
         const res = await authApi.login({ email, password });
-        onSuccess(res.user, res.accessToken);
+        onSuccess(res.user, res.accessToken, res.refreshToken);
       } else {
         const res = await authApi.register({
           name: name.trim(),
@@ -46,7 +46,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
           password,
           phone: phone.trim() || undefined,
         });
-        onSuccess(res.user, res.accessToken);
+        onSuccess(res.user, res.accessToken, res.refreshToken);
       }
     } catch (err: any) {
       setErrorMessage(

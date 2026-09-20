@@ -9,8 +9,12 @@ export const viLocale: I18nDictionary = {
     userNotFound: 'Không tìm thấy tài khoản người dùng',
     tokenMissing: 'Không tìm thấy Bearer token xác thực',
     tokenInvalid: 'Token xác thực không hợp lệ hoặc đã hết hạn',
+    refreshTokenRequired: 'Refresh token không được để trống',
+    refreshTokenInvalid: 'Refresh token không hợp lệ hoặc đã hết hạn',
+    refreshTokenRevoked: 'Refresh token đã bị thu hồi. Vui lòng đăng nhập lại',
     registeredSuccess: 'Đăng ký tài khoản thành công',
     loginSuccess: 'Đăng nhập thành công',
+    logoutSuccess: 'Đăng xuất thành công',
   },
   reminders: {
     notFound: 'Không tìm thấy lịch nhắc với ID "{id}"',

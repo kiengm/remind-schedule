@@ -6,5 +6,7 @@ export interface IUserRepositoryPort {
   findByEmail(email: string): Promise<UserEntity | null>;
   findByPhone(phone: string): Promise<UserEntity | null>;
   update(user: UserEntity): Promise<UserEntity>;
+  updateRefreshToken(userId: string, refreshTokenHash: string | null): Promise<void>;
 }
+
 

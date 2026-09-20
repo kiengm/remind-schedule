@@ -30,16 +30,22 @@ export class LoginInteractor implements ILoginUseCase {
 
 
 
-    // 4. Sinh JWT Access Token
-    const accessToken = await this.tokenService.generateToken({
+    // 4. Sinh cặp JWT Tokens (Access Token 15m, Refresh Token 7d)
+    const { accessToken, refreshToken } = await this.tokenService.generateTokens({
       userId: user.id,
       email: user.email,
       role: user.role,
     });
 
+    // 5. Hash Refresh Token và cập nhật vào Database
+    const hashedRefreshToken = await this.passwordHasher.hash(refreshToken);
+    await this.userRepository.updateRefreshToken(user.id, hashedRefreshToken);
+    user.updateRefreshTokenHash(hashedRefreshToken);
+
     return {
       user,
       accessToken,
+      refreshToken,
     };
   }
 }

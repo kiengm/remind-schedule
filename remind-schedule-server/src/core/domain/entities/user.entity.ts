@@ -9,6 +9,7 @@ export interface CreateUserProps {
   avatar?: string | null;
   role?: Role;
   isActive?: boolean;
+  refreshTokenHash?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -22,6 +23,7 @@ export class UserEntity {
   private _avatar: string | null;
   private _role: Role;
   private _isActive: boolean;
+  private _refreshTokenHash: string | null;
   private readonly _createdAt: Date;
   private _updatedAt: Date;
 
@@ -44,6 +46,7 @@ export class UserEntity {
     this._avatar = props.avatar?.trim() || null;
     this._role = props.role || Role.USER;
     this._isActive = props.isActive !== undefined ? props.isActive : true;
+    this._refreshTokenHash = props.refreshTokenHash || null;
     this._createdAt = props.createdAt ? new Date(props.createdAt) : new Date();
     this._updatedAt = props.updatedAt ? new Date(props.updatedAt) : new Date();
   }
@@ -80,6 +83,10 @@ export class UserEntity {
     return this._isActive;
   }
 
+  get refreshTokenHash(): string | null {
+    return this._refreshTokenHash;
+  }
+
   get createdAt(): Date {
     return this._createdAt;
   }
@@ -87,6 +94,17 @@ export class UserEntity {
   get updatedAt(): Date {
     return this._updatedAt;
   }
+
+  public updateRefreshTokenHash(hash: string | null): void {
+    this._refreshTokenHash = hash;
+    this._updatedAt = new Date();
+  }
+
+  public clearRefreshTokenHash(): void {
+    this._refreshTokenHash = null;
+    this._updatedAt = new Date();
+  }
+
 
   // Domain Logic & Invariants
   public updateProfile(name?: string, phone?: string | null, avatar?: string | null): void {

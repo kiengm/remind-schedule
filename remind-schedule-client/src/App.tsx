@@ -7,6 +7,8 @@ import { Button, Card, CardContent, MaterialIcon } from '@/components/atoms';
 import { AuthPage } from '@/pages/AuthPage';
 import { ReminderStatus } from '@/types/reminder';
 import { User } from '@/types/auth';
+import { authApi } from '@/features/auth/api/auth.api';
+
 
 export function App() {
   const { t } = useTranslation();
@@ -26,6 +28,7 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Tải thông tin người dùng từ localStorage khi tải trang
+  // Tải thông tin người dùng từ localStorage khi tải trang & lắng nghe phiên hết hạn
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
@@ -34,19 +37,34 @@ export function App() {
       } catch {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
       }
     }
+
+    const onSessionExpired = () => {
+      setCurrentUser(null);
+    };
+
+    window.addEventListener('auth:expired', onSessionExpired);
+    return () => {
+      window.removeEventListener('auth:expired', onSessionExpired);
+    };
   }, []);
 
-  const handleAuthSuccess = (user: User, token: string) => {
+  const handleAuthSuccess = (user: User, token: string, refreshToken: string) => {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', token);
+    if (refreshToken) {
+      localStorage.setItem('refreshToken', refreshToken);
+    }
     setCurrentUser(user);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await authApi.logout();
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     setCurrentUser(null);
   };
 

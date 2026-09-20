@@ -6,6 +6,8 @@ import { BcryptPasswordHasher } from '../adapters/gateways/bcrypt-password.hashe
 import { JwtTokenService } from '../adapters/gateways/jwt-token.service';
 import { RegisterInteractor } from '../application/use-cases/register.interactor';
 import { LoginInteractor } from '../application/use-cases/login.interactor';
+import { RefreshTokenInteractor } from '../application/use-cases/refresh-token.interactor';
+import { LogoutInteractor } from '../application/use-cases/logout.interactor';
 import { IUserRepositoryPort } from '../application/ports/out/user-repository.port';
 import { IPasswordHasherPort } from '../application/ports/out/password-hasher.port';
 import { ITokenServicePort } from '../application/ports/out/token-service.port';
@@ -13,7 +15,9 @@ import { JwtAuthGuard } from '../infrastructure/common/guards/jwt-auth.guard';
 import { PrismaModule } from '../infrastructure/database/prisma/prisma.module';
 import {
   LOGIN_USE_CASE,
+  LOGOUT_USE_CASE,
   PASSWORD_HASHER,
+  REFRESH_TOKEN_USE_CASE,
   REGISTER_USE_CASE,
   TOKEN_SERVICE,
   USER_REPOSITORY,
@@ -62,6 +66,20 @@ import {
       ) => new LoginInteractor(userRepo, hasher, tokenService),
       inject: [USER_REPOSITORY, PASSWORD_HASHER, TOKEN_SERVICE],
     },
+    {
+      provide: REFRESH_TOKEN_USE_CASE,
+      useFactory: (
+        userRepo: IUserRepositoryPort,
+        hasher: IPasswordHasherPort,
+        tokenService: ITokenServicePort
+      ) => new RefreshTokenInteractor(userRepo, hasher, tokenService),
+      inject: [USER_REPOSITORY, PASSWORD_HASHER, TOKEN_SERVICE],
+    },
+    {
+      provide: LOGOUT_USE_CASE,
+      useFactory: (userRepo: IUserRepositoryPort) => new LogoutInteractor(userRepo),
+      inject: [USER_REPOSITORY],
+    },
 
     // Guard
     JwtAuthGuard,
@@ -72,6 +90,8 @@ import {
     TOKEN_SERVICE,
     REGISTER_USE_CASE,
     LOGIN_USE_CASE,
+    REFRESH_TOKEN_USE_CASE,
+    LOGOUT_USE_CASE,
     JwtAuthGuard,
   ],
 })
