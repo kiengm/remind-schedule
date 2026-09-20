@@ -40,7 +40,7 @@ export const FormField: React.FC<FormFieldProps> = ({
             className={cn(
               icon && 'pl-10',
               error && 'border-destructive focus-visible:ring-destructive',
-              textareaProps?.className
+              textareaProps?.className,
             )}
           />
         ) : (
@@ -49,7 +49,7 @@ export const FormField: React.FC<FormFieldProps> = ({
             className={cn(
               icon && 'pl-10',
               error && 'border-destructive focus-visible:ring-destructive',
-              inputProps?.className
+              inputProps?.className,
             )}
           />
         )}
@@ -58,4 +58,3 @@ export const FormField: React.FC<FormFieldProps> = ({
     </div>
   );
 };
-

@@ -20,7 +20,7 @@ export class JwtTokenService implements ITokenServicePort {
       },
       {
         expiresIn: '15m',
-      }
+      },
     );
   }
 
@@ -35,7 +35,7 @@ export class JwtTokenService implements ITokenServicePort {
         },
         {
           expiresIn: '15m',
-        }
+        },
       ),
       this.jwtService.signAsync(
         {
@@ -46,7 +46,7 @@ export class JwtTokenService implements ITokenServicePort {
         },
         {
           expiresIn: '7d',
-        }
+        },
       ),
     ]);
 

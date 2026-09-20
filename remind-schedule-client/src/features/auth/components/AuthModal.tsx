@@ -42,7 +42,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
       }
     } catch (err: any) {
       setErrorMessage(
-        err?.response?.data?.message || err?.message || 'Có lỗi xảy ra, vui lòng thử lại'
+        err?.response?.data?.message || err?.message || 'Có lỗi xảy ra, vui lòng thử lại',
       );
     } finally {
       setLoading(false);
@@ -198,4 +198,3 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
     </div>
   );
 };
-

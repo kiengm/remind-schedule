@@ -4,4 +4,3 @@ export interface IGetRemindersUseCase {
   findAll(): Promise<ReminderEntity[]>;
   findById(id: string): Promise<ReminderEntity>;
 }
-

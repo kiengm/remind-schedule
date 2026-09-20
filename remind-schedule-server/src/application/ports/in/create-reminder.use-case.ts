@@ -11,4 +11,3 @@ export interface CreateReminderCommand {
 export interface ICreateReminderUseCase {
   execute(command: CreateReminderCommand): Promise<ReminderEntity>;
 }
-

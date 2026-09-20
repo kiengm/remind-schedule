@@ -15,4 +15,3 @@ export class BcryptPasswordHasher implements IPasswordHasherPort {
     return await bcrypt.compare(plainText, hashed);
   }
 }
-

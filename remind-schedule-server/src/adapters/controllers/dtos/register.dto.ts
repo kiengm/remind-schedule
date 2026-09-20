@@ -22,4 +22,3 @@ export class RegisterDto {
   @IsString({ message: 'Số điện thoại phải là chuỗi ký tự' })
   phone?: string;
 }
-

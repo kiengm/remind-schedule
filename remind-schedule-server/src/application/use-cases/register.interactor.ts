@@ -8,7 +8,7 @@ export class RegisterInteractor implements IRegisterUseCase {
   constructor(
     private readonly userRepository: IUserRepositoryPort,
     private readonly passwordHasher: IPasswordHasherPort,
-    private readonly tokenService: ITokenServicePort
+    private readonly tokenService: ITokenServicePort,
   ) {}
 
   async execute(command: RegisterCommand): Promise<AuthResult> {
@@ -59,4 +59,3 @@ export class RegisterInteractor implements IRegisterUseCase {
     };
   }
 }
-

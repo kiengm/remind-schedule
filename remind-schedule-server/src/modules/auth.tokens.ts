@@ -5,4 +5,3 @@ export const REFRESH_TOKEN_USE_CASE = Symbol('REFRESH_TOKEN_USE_CASE');
 export const LOGOUT_USE_CASE = Symbol('LOGOUT_USE_CASE');
 export const PASSWORD_HASHER = Symbol('PASSWORD_HASHER');
 export const TOKEN_SERVICE = Symbol('TOKEN_SERVICE');
-

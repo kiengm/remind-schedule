@@ -1,6 +1,7 @@
 # Remind Schedule Project
 
 Dự án bao gồm 2 thành phần độc lập được quản lý chung qua Yarn Workspace:
+
 1. **`remind-schedule-server`**: RESTful API xây dựng bằng **NestJS** theo chuẩn **The Clean Architecture**.
 2. **`remind-schedule-client`**: Web UI xây dựng bằng **React + Vite + TypeScript + Tailwind CSS (Shadcn/UI & Atomic Design)**.
 
@@ -11,21 +12,28 @@ Dự án bao gồm 2 thành phần độc lập được quản lý chung qua Ya
 Từ thư mục gốc `remind-schedule/`, bạn có thể chạy trực tiếp:
 
 ### 1. Khởi chạy Server ở chế độ Development:
+
 ```bash
 yarn server dev
 ```
-*(hoặc `yarn server:dev`)*
+
+_(hoặc `yarn server:dev`)_
+
 - Server API chạy tại: `http://localhost:3000`
 - Swagger UI tài liệu API: `http://localhost:3000/api/docs`
 
 ### 2. Khởi chạy Client ở chế độ Development:
+
 ```bash
 yarn client dev
 ```
-*(hoặc `yarn client:dev`)*
+
+_(hoặc `yarn client:dev`)_
+
 - Giao diện web chạy tại: `http://localhost:5173`
 
 ### 3. Build Production từ thư mục gốc:
+
 ```bash
 # Build Server
 yarn server build

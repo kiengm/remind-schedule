@@ -7,7 +7,7 @@ export class LoginInteractor implements ILoginUseCase {
   constructor(
     private readonly userRepository: IUserRepositoryPort,
     private readonly passwordHasher: IPasswordHasherPort,
-    private readonly tokenService: ITokenServicePort
+    private readonly tokenService: ITokenServicePort,
   ) {}
 
   async execute(command: LoginCommand): Promise<AuthResult> {
@@ -28,8 +28,6 @@ export class LoginInteractor implements ILoginUseCase {
       throw new Error('auth.emailPasswordInvalid');
     }
 
-
-
     // 4. Sinh cặp JWT Tokens (Access Token 15m, Refresh Token 7d)
     const { accessToken, refreshToken } = await this.tokenService.generateTokens({
       userId: user.id,
@@ -49,4 +47,3 @@ export class LoginInteractor implements ILoginUseCase {
     };
   }
 }
-

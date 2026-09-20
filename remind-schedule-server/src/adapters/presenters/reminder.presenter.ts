@@ -33,4 +33,3 @@ export class ReminderPresenter {
     return entities.map((entity) => this.toViewModel(entity));
   }
 }
-

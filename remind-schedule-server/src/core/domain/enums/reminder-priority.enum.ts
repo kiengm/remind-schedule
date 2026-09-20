@@ -4,4 +4,3 @@ export enum ReminderPriority {
   HIGH = 'HIGH',
   URGENT = 'URGENT',
 }
-

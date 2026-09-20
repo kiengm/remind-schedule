@@ -10,4 +10,3 @@ export * from './use-cases/create-reminder.interactor';
 export * from './use-cases/get-reminders.interactor';
 export * from './use-cases/update-reminder.interactor';
 export * from './use-cases/delete-reminder.interactor';
-

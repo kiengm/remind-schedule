@@ -16,4 +16,3 @@ export interface AuthResult {
 export interface IRegisterUseCase {
   execute(command: RegisterCommand): Promise<AuthResult>;
 }
-

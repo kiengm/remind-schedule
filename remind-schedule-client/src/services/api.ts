@@ -1,5 +1,10 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { ApiResponse, CreateReminderPayload, Reminder, UpdateReminderPayload } from '../types/reminder';
+import {
+  ApiResponse,
+  CreateReminderPayload,
+  Reminder,
+  UpdateReminderPayload,
+} from '../types/reminder';
 import { RefreshTokenResponse } from '../types/auth';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
@@ -106,7 +111,7 @@ apiClient.interceptors.response.use(
         // Dùng axios instance cơ bản để tránh bị lặp interceptor
         const res = await axios.post<ApiResponse<RefreshTokenResponse>>(
           `${API_BASE_URL}/auth/refresh-token`,
-          { refreshToken: currentRefreshToken }
+          { refreshToken: currentRefreshToken },
         );
 
         const { accessToken, refreshToken: newRefreshToken } = res.data.data;
@@ -137,7 +142,7 @@ apiClient.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export const reminderApi = {

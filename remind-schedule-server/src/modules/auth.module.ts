@@ -53,7 +53,7 @@ import {
       useFactory: (
         userRepo: IUserRepositoryPort,
         hasher: IPasswordHasherPort,
-        tokenService: ITokenServicePort
+        tokenService: ITokenServicePort,
       ) => new RegisterInteractor(userRepo, hasher, tokenService),
       inject: [USER_REPOSITORY, PASSWORD_HASHER, TOKEN_SERVICE],
     },
@@ -62,7 +62,7 @@ import {
       useFactory: (
         userRepo: IUserRepositoryPort,
         hasher: IPasswordHasherPort,
-        tokenService: ITokenServicePort
+        tokenService: ITokenServicePort,
       ) => new LoginInteractor(userRepo, hasher, tokenService),
       inject: [USER_REPOSITORY, PASSWORD_HASHER, TOKEN_SERVICE],
     },
@@ -71,7 +71,7 @@ import {
       useFactory: (
         userRepo: IUserRepositoryPort,
         hasher: IPasswordHasherPort,
-        tokenService: ITokenServicePort
+        tokenService: ITokenServicePort,
       ) => new RefreshTokenInteractor(userRepo, hasher, tokenService),
       inject: [USER_REPOSITORY, PASSWORD_HASHER, TOKEN_SERVICE],
     },
@@ -96,4 +96,3 @@ import {
   ],
 })
 export class AuthModule {}
-

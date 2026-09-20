@@ -1,5 +1,8 @@
 import { ReminderEntity } from '../../core/domain/entities/reminder.entity';
-import { CreateReminderCommand, ICreateReminderUseCase } from '../ports/in/create-reminder.use-case';
+import {
+  CreateReminderCommand,
+  ICreateReminderUseCase,
+} from '../ports/in/create-reminder.use-case';
 import { IReminderRepositoryPort } from '../ports/out/reminder-repository.port';
 
 export class CreateReminderInteractor implements ICreateReminderUseCase {
@@ -16,4 +19,3 @@ export class CreateReminderInteractor implements ICreateReminderUseCase {
     return await this.reminderRepository.save(reminder);
   }
 }
-

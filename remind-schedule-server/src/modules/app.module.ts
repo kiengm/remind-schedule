@@ -7,5 +7,4 @@ import { I18nModule } from '../infrastructure/i18n/i18n.module';
 @Module({
   imports: [I18nModule, PrismaModule, AuthModule, ReminderModule],
 })
-
 export class AppModule {}

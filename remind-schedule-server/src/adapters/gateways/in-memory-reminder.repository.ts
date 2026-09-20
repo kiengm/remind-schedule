@@ -42,7 +42,7 @@ export class InMemoryReminderRepository implements IReminderRepositoryPort {
 
   async findAll(): Promise<ReminderEntity[]> {
     return Array.from(this.items.values()).sort(
-      (a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime()
+      (a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime(),
     );
   }
 
@@ -55,4 +55,3 @@ export class InMemoryReminderRepository implements IReminderRepositoryPort {
     return this.items.delete(id);
   }
 }
-

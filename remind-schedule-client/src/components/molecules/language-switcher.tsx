@@ -32,7 +32,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       onClick={toggleLanguage}
       className={cn(
         'rounded-xl px-2.5 py-1 text-xs font-semibold gap-1.5 transition-all duration-200 border-border/80 hover:bg-accent hover:text-accent-foreground select-none',
-        className
+        className,
       )}
       title={currentLang === 'vi' ? 'Switch to English' : 'Chuyển sang Tiếng Việt'}
     >
@@ -40,12 +40,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       <span className="flex items-center gap-1">
         {currentLang === 'vi' ? (
           <>
-            <span role="img" aria-label="Vietnam" className="text-sm leading-none">🇻🇳</span>
+            <span role="img" aria-label="Vietnam" className="text-sm leading-none">
+              🇻🇳
+            </span>
             <span>VI</span>
           </>
         ) : (
           <>
-            <span role="img" aria-label="United Kingdom" className="text-sm leading-none">🇬🇧</span>
+            <span role="img" aria-label="United Kingdom" className="text-sm leading-none">
+              🇬🇧
+            </span>
             <span>EN</span>
           </>
         )}
@@ -53,4 +57,3 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     </Button>
   );
 };
-

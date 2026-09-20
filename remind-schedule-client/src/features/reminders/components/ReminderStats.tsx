@@ -13,10 +13,34 @@ export const ReminderStats: React.FC<ReminderStatsProps> = ({ reminders }) => {
   const overdue = reminders.filter((r) => r.isOverdue && r.status === 'PENDING').length;
 
   const stats = [
-    { label: 'Tổng số lời nhắc', value: total, icon: ListTodo, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-    { label: 'Đang chờ thực hiện', value: pending, icon: Clock, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { label: 'Đã hoàn thành', value: completed, icon: CheckCircle2, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { label: 'Quá hạn', value: overdue, icon: AlertCircle, color: 'text-rose-600', bg: 'bg-rose-50' },
+    {
+      label: 'Tổng số lời nhắc',
+      value: total,
+      icon: ListTodo,
+      color: 'text-indigo-600',
+      bg: 'bg-indigo-50',
+    },
+    {
+      label: 'Đang chờ thực hiện',
+      value: pending,
+      icon: Clock,
+      color: 'text-blue-600',
+      bg: 'bg-blue-50',
+    },
+    {
+      label: 'Đã hoàn thành',
+      value: completed,
+      icon: CheckCircle2,
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-50',
+    },
+    {
+      label: 'Quá hạn',
+      value: overdue,
+      icon: AlertCircle,
+      color: 'text-rose-600',
+      bg: 'bg-rose-50',
+    },
   ];
 
   return (
@@ -41,4 +65,3 @@ export const ReminderStats: React.FC<ReminderStatsProps> = ({ reminders }) => {
     </div>
   );
 };
-

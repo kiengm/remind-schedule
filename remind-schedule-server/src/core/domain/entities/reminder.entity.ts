@@ -112,10 +112,6 @@ export class ReminderEntity {
   }
 
   public isOverdue(): boolean {
-    return (
-      this._status === ReminderStatus.PENDING &&
-      this._scheduledAt.getTime() < Date.now()
-    );
+    return this._status === ReminderStatus.PENDING && this._scheduledAt.getTime() < Date.now();
   }
 }
-

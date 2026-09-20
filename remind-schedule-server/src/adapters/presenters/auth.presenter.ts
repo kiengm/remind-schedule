@@ -40,7 +40,7 @@ export class AuthPresenter {
   static toAuthResponse(
     userEntity: UserEntity,
     accessToken: string,
-    refreshToken: string
+    refreshToken: string,
   ): AuthResponseViewModel {
     return {
       user: this.toUserViewModel(userEntity),
@@ -56,4 +56,3 @@ export class AuthPresenter {
     };
   }
 }
-

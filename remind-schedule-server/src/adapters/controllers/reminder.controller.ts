@@ -37,7 +37,7 @@ export class ReminderController {
     @Inject(UPDATE_REMINDER_USE_CASE)
     private readonly updateReminderUseCase: IUpdateReminderUseCase,
     @Inject(DELETE_REMINDER_USE_CASE)
-    private readonly deleteReminderUseCase: IDeleteReminderUseCase
+    private readonly deleteReminderUseCase: IDeleteReminderUseCase,
   ) {}
 
   @Post(ENDPOINTS.REMINDERS.CREATE)
@@ -79,7 +79,7 @@ export class ReminderController {
   @ApiResponse({ status: 404, description: 'Không tìm thấy lịch nhắc' })
   async update(
     @Param('id') id: string,
-    @Body() dto: UpdateReminderDto
+    @Body() dto: UpdateReminderDto,
   ): Promise<ReminderViewModel> {
     const entity = await this.updateReminderUseCase.execute({
       id,
@@ -102,4 +102,3 @@ export class ReminderController {
     await this.deleteReminderUseCase.execute(id);
   }
 }
-

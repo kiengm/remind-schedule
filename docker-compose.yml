@@ -8,10 +8,9 @@ services:
       MYSQL_DATABASE: remind_schedule
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - "13307:3306"
+      - '13307:3306'
     volumes:
       - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
-

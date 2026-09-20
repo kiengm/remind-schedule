@@ -4,7 +4,7 @@ import viTranslation from './locales/vi.json';
 import enTranslation from './locales/en.json';
 
 export const SUPPORTED_LANGUAGES = ['vi', 'en'] as const;
-export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
+export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 const STORAGE_KEY = 'app_lang';
 
@@ -22,19 +22,16 @@ export const setAppLanguage = (lang: SupportedLanguage) => {
   i18n.changeLanguage(lang);
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      vi: { translation: viTranslation },
-      en: { translation: enTranslation },
-    },
-    lng: getSavedLanguage(),
-    fallbackLng: 'vi',
-    interpolation: {
-      escapeValue: false, // React đã tự escape XSS
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources: {
+    vi: { translation: viTranslation },
+    en: { translation: enTranslation },
+  },
+  lng: getSavedLanguage(),
+  fallbackLng: 'vi',
+  interpolation: {
+    escapeValue: false, // React đã tự escape XSS
+  },
+});
 
 export default i18n;
-

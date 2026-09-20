@@ -29,18 +29,19 @@ async function bootstrap() {
         enableImplicitConversion: true,
       },
       exceptionFactory: (errors) => new BadRequestException(errors),
-    })
+    }),
   );
 
   // Global Interceptor & Filter
   app.useGlobalInterceptors(new TransformResponseInterceptor());
   app.useGlobalFilters(new AllExceptionsFilter(i18nService));
 
-
   // Swagger Documentation Setup
   const config = new DocumentBuilder()
     .setTitle('Remind Schedule REST API')
-    .setDescription('Tài liệu RESTful API hệ thống Remind Schedule thiết kế theo The Clean Architecture')
+    .setDescription(
+      'Tài liệu RESTful API hệ thống Remind Schedule thiết kế theo The Clean Architecture',
+    )
     .setVersion('1.0.0')
     .addTag('Reminders', 'Các API quản lý lịch nhắc')
     .build();
@@ -54,4 +55,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-

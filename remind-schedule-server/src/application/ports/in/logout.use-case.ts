@@ -5,4 +5,3 @@ export interface LogoutCommand {
 export interface ILogoutUseCase {
   execute(command: LogoutCommand): Promise<void>;
 }
-

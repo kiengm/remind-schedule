@@ -67,7 +67,7 @@ export class I18nService {
     if (typeof current === 'string' && args) {
       return Object.entries(args).reduce(
         (acc, [k, v]) => acc.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v)),
-        current
+        current,
       );
     }
 
@@ -83,19 +83,29 @@ export class I18nService {
     }
 
     // 1. Nếu là translation key hợp lệ
-    if (rawMessage.startsWith('auth.') || rawMessage.startsWith('reminders.') || rawMessage.startsWith('common.')) {
+    if (
+      rawMessage.startsWith('auth.') ||
+      rawMessage.startsWith('reminders.') ||
+      rawMessage.startsWith('common.')
+    ) {
       return this.t(rawMessage, lang);
     }
 
     // 2. Map chuỗi tĩnh hiện tại sang ngôn ngữ tương ứng
     // Auth messages
-    if (rawMessage.includes('Email hoặc mật khẩu không chính xác') || rawMessage.includes('Incorrect email or password')) {
+    if (
+      rawMessage.includes('Email hoặc mật khẩu không chính xác') ||
+      rawMessage.includes('Incorrect email or password')
+    ) {
       return this.t('auth.emailPasswordInvalid', lang);
     }
     if (rawMessage.includes('vô hiệu hóa') || rawMessage.includes('deactivated')) {
       return this.t('auth.userDisabled', lang);
     }
-    if (rawMessage.includes('đã được sử dụng. Vui lòng chọn email khác') || rawMessage.includes('already in use. Please choose another email')) {
+    if (
+      rawMessage.includes('đã được sử dụng. Vui lòng chọn email khác') ||
+      rawMessage.includes('already in use. Please choose another email')
+    ) {
       const match = rawMessage.match(/["']([^"']+)["']/);
       return this.t('auth.emailExists', lang, { email: match ? match[1] : '' });
     }
@@ -103,22 +113,37 @@ export class I18nService {
       const match = rawMessage.match(/["']([^"']+)["']/);
       return this.t('auth.phoneExists', lang, { phone: match ? match[1] : '' });
     }
-    if (rawMessage.includes('Không tìm thấy tài khoản người dùng') || rawMessage.includes('User account not found')) {
+    if (
+      rawMessage.includes('Không tìm thấy tài khoản người dùng') ||
+      rawMessage.includes('User account not found')
+    ) {
       return this.t('auth.userNotFound', lang);
     }
-    if (rawMessage.includes('Không tìm thấy Bearer token xác thực') || rawMessage.includes('Bearer authentication token not found')) {
+    if (
+      rawMessage.includes('Không tìm thấy Bearer token xác thực') ||
+      rawMessage.includes('Bearer authentication token not found')
+    ) {
       return this.t('auth.tokenMissing', lang);
     }
-    if (rawMessage.includes('Token xác thực không hợp lệ') || rawMessage.includes('Authentication token is invalid')) {
+    if (
+      rawMessage.includes('Token xác thực không hợp lệ') ||
+      rawMessage.includes('Authentication token is invalid')
+    ) {
       return this.t('auth.tokenInvalid', lang);
     }
 
     // Reminder messages
-    if (rawMessage.toLowerCase().includes('not found') || rawMessage.includes('Không tìm thấy lịch nhắc')) {
+    if (
+      rawMessage.toLowerCase().includes('not found') ||
+      rawMessage.includes('Không tìm thấy lịch nhắc')
+    ) {
       const match = rawMessage.match(/["']([^"']+)["']/);
       return this.t('reminders.notFound', lang, { id: match ? match[1] : '' });
     }
-    if (rawMessage.toLowerCase().includes('title cannot be empty') || rawMessage.includes('Tiêu đề') && rawMessage.includes('không được để trống')) {
+    if (
+      rawMessage.toLowerCase().includes('title cannot be empty') ||
+      (rawMessage.includes('Tiêu đề') && rawMessage.includes('không được để trống'))
+    ) {
       return this.t('reminders.titleEmpty', lang);
     }
     if (rawMessage.toLowerCase().includes('cannot complete a cancelled reminder')) {
@@ -159,19 +184,27 @@ export class I18nService {
     return messages;
   }
 
-  private formatConstraintMessage(constraint: string, field: string, lang: SupportedLanguage): string {
+  private formatConstraintMessage(
+    constraint: string,
+    field: string,
+    lang: SupportedLanguage,
+  ): string {
     const isEn = lang === 'en';
     switch (constraint) {
       case 'isNotEmpty':
         return isEn ? `${field} should not be empty` : `${field} không được để trống`;
       case 'isEmail':
-        return isEn ? `${field} must be a valid email address` : `${field} phải là địa chỉ email hợp lệ`;
+        return isEn
+          ? `${field} must be a valid email address`
+          : `${field} phải là địa chỉ email hợp lệ`;
       case 'minLength':
         return isEn ? `${field} is too short` : `${field} quá ngắn`;
       case 'maxLength':
         return isEn ? `${field} is too long` : `${field} quá dài`;
       case 'isDateString':
-        return isEn ? `${field} must be a valid ISO 8601 date string` : `${field} phải là định dạng ngày ISO 8601 hợp lệ`;
+        return isEn
+          ? `${field} must be a valid ISO 8601 date string`
+          : `${field} phải là định dạng ngày ISO 8601 hợp lệ`;
       case 'isEnum':
         return isEn ? `${field} has an invalid value` : `${field} có giá trị không hợp lệ`;
       case 'isString':
@@ -181,4 +214,3 @@ export class I18nService {
     }
   }
 }
-

@@ -19,15 +19,18 @@
 ## 🚀 Hướng dẫn cài đặt và khởi chạy
 
 ### Yêu cầu
+
 - Node.js >= 18
 - Yarn >= 1.22 hoặc Yarn Modern (v4)
 
 ### Cài đặt dependencies
+
 ```bash
 yarn install
 ```
 
 ### Chạy ở chế độ phát triển (Development)
+
 ```bash
 yarn dev
 ```
@@ -38,7 +41,7 @@ yarn dev
 > Mặc định client sẽ gọi API đến `http://localhost:3000/api/v1`. Hãy đảm bảo `remind-schedule-server` đã được bật trước khi khởi chạy client.
 
 ### Build bản Production
+
 ```bash
 yarn build
 ```
-

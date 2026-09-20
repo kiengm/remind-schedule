@@ -48,5 +48,3 @@ export const ReminderStatsBar: React.FC<ReminderStatsBarProps> = ({ reminders })
     </div>
   );
 };
-
-

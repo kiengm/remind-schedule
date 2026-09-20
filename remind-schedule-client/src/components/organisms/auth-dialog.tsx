@@ -46,7 +46,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ isOpen, onClose, onSucce
       }
     } catch (err: any) {
       setErrorMessage(
-        err?.response?.data?.message || err?.message || 'Có lỗi xảy ra, vui lòng thử lại'
+        err?.response?.data?.message || err?.message || 'Có lỗi xảy ra, vui lòng thử lại',
       );
     } finally {
       setLoading(false);
@@ -69,7 +69,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ isOpen, onClose, onSucce
                 'pb-2 text-base font-semibold border-b-2 transition-colors flex items-center gap-1.5',
                 tab === 'login'
                   ? 'border-primary text-primary'
-                  : 'border-transparent text-muted-foreground hover:text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground',
               )}
             >
               <LogIn className="w-4 h-4" />
@@ -85,7 +85,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ isOpen, onClose, onSucce
                 'pb-2 text-base font-semibold border-b-2 transition-colors flex items-center gap-1.5',
                 tab === 'register'
                   ? 'border-primary text-primary'
-                  : 'border-transparent text-muted-foreground hover:text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground',
               )}
             >
               <UserPlus className="w-4 h-4" />
@@ -189,4 +189,3 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ isOpen, onClose, onSucce
     </div>
   );
 };
-

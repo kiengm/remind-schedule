@@ -11,7 +11,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       this.logger.log('✅ Đã kết nối thành công tới cơ sở dữ liệu MySQL thông qua Prisma');
     } catch (error) {
       this.logger.warn(
-        '⚠️ Chưa thể kết nối tới MySQL database (hãy đảm bảo MySQL đang chạy và kiểm tra DATABASE_URL trong file .env)'
+        '⚠️ Chưa thể kết nối tới MySQL database (hãy đảm bảo MySQL đang chạy và kiểm tra DATABASE_URL trong file .env)',
       );
     }
   }
@@ -21,4 +21,3 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     this.logger.log('Đã ngắt kết nối Prisma Client');
   }
 }
-

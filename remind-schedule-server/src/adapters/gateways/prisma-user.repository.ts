@@ -93,4 +93,3 @@ export class PrismaUserRepository implements IUserRepositoryPort {
     });
   }
 }
-

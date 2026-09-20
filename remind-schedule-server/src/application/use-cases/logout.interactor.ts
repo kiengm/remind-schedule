@@ -12,4 +12,3 @@ export class LogoutInteractor implements ILogoutUseCase {
     await this.userRepository.updateRefreshToken(command.userId, null);
   }
 }
-

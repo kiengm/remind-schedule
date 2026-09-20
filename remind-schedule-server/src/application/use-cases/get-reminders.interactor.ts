@@ -17,4 +17,3 @@ export class GetRemindersInteractor implements IGetRemindersUseCase {
     return reminder;
   }
 }
-

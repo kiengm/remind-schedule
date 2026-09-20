@@ -15,4 +15,3 @@ export interface ITokenServicePort {
   verifyToken<T extends object = any>(token: string): Promise<T>;
   verifyRefreshToken<T extends object = any>(token: string): Promise<T>;
 }
-

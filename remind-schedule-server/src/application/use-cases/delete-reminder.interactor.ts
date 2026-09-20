@@ -13,4 +13,3 @@ export class DeleteReminderInteractor implements IDeleteReminderUseCase {
     await this.reminderRepository.delete(id);
   }
 }
-

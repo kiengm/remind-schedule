@@ -10,12 +10,18 @@ export class UpdateReminderDto {
   @MaxLength(255)
   title?: string;
 
-  @ApiPropertyOptional({ description: 'Mô tả chi tiết', example: 'Cập nhật nội dung thảo luận mới' })
+  @ApiPropertyOptional({
+    description: 'Mô tả chi tiết',
+    example: 'Cập nhật nội dung thảo luận mới',
+  })
   @IsOptional()
   @IsString()
   description?: string;
 
-  @ApiPropertyOptional({ description: 'Thời gian nhắc nhở mới (ISO 8601)', example: '2026-09-04T14:30:00.000Z' })
+  @ApiPropertyOptional({
+    description: 'Thời gian nhắc nhở mới (ISO 8601)',
+    example: '2026-09-04T14:30:00.000Z',
+  })
   @IsOptional()
   @IsDateString({}, { message: 'scheduledAt phải là định dạng ISO 8601 Date hợp lệ' })
   scheduledAt?: string;
@@ -30,4 +36,3 @@ export class UpdateReminderDto {
   @IsEnum(ReminderStatus)
   status?: ReminderStatus;
 }
-

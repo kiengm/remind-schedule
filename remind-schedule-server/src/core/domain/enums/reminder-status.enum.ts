@@ -3,4 +3,3 @@ export enum ReminderStatus {
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
 }
-

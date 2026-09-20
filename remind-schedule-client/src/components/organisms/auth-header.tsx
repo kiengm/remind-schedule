@@ -23,7 +23,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
     <header
       className={cn(
         'w-full px-6 py-4 flex items-center justify-between border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-20 transition-all',
-        className
+        className,
       )}
     >
       {/* Brand Logo & Name (Bên trái) */}
@@ -61,5 +61,3 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
     </header>
   );
 };
-
-

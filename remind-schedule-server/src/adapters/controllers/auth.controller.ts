@@ -48,15 +48,24 @@ export class AuthController {
     @Inject(LOGOUT_USE_CASE)
     private readonly logoutUseCase: ILogoutUseCase,
     @Inject(USER_REPOSITORY)
-    private readonly userRepository: IUserRepositoryPort
+    private readonly userRepository: IUserRepositoryPort,
   ) {}
 
   @Post(ENDPOINTS.AUTH.REGISTER)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Đăng ký tài khoản mới' })
-  @ApiResponse({ status: 201, description: 'Đăng ký thành công, trả về thông tin user và accessToken' })
-  @ApiResponse({ status: 201, description: 'Đăng ký thành công, trả về user, accessToken và refreshToken' })
-  @ApiResponse({ status: 400, description: 'Dữ liệu không hợp lệ hoặc email/số điện thoại đã tồn tại' })
+  @ApiResponse({
+    status: 201,
+    description: 'Đăng ký thành công, trả về thông tin user và accessToken',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Đăng ký thành công, trả về user, accessToken và refreshToken',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Dữ liệu không hợp lệ hoặc email/số điện thoại đã tồn tại',
+  })
   async register(@Body() dto: RegisterDto): Promise<AuthResponseViewModel> {
     const result = await this.registerUseCase.execute({
       name: dto.name,
@@ -71,7 +80,10 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Đăng nhập vào hệ thống' })
   @ApiResponse({ status: 200, description: 'Đăng nhập thành công, trả về accessToken' })
-  @ApiResponse({ status: 200, description: 'Đăng nhập thành công, trả về accessToken và refreshToken' })
+  @ApiResponse({
+    status: 200,
+    description: 'Đăng nhập thành công, trả về accessToken và refreshToken',
+  })
   @ApiResponse({ status: 400, description: 'Sai email hoặc mật khẩu' })
   async login(@Body() dto: LoginDto): Promise<AuthResponseViewModel> {
     const result = await this.loginUseCase.execute({
@@ -120,8 +132,5 @@ export class AuthController {
       throw new Error('auth.userNotFound');
     }
     return AuthPresenter.toUserViewModel(user);
-
-
   }
 }
-

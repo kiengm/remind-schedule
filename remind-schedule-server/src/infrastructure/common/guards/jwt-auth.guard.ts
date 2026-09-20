@@ -13,7 +13,7 @@ import { ITokenServicePort } from '../../../application/ports/out/token-service.
 export class JwtAuthGuard implements CanActivate {
   constructor(
     @Inject(TOKEN_SERVICE)
-    private readonly tokenService: ITokenServicePort
+    private readonly tokenService: ITokenServicePort,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -32,8 +32,5 @@ export class JwtAuthGuard implements CanActivate {
     } catch {
       throw new UnauthorizedException('auth.tokenInvalid');
     }
-
-
   }
 }
-

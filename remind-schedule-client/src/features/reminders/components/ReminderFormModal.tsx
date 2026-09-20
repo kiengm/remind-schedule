@@ -96,9 +96,7 @@ export const ReminderFormModal: React.FC<ReminderFormModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              Mô tả chi tiết
-            </label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Mô tả chi tiết</label>
             <textarea
               rows={3}
               placeholder="Nhập ghi chú thêm nếu cần..."
@@ -162,4 +160,3 @@ export const ReminderFormModal: React.FC<ReminderFormModalProps> = ({
     </div>
   );
 };
-

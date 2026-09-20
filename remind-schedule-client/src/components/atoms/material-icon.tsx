@@ -24,10 +24,9 @@ export const MaterialIcon = React.forwardRef<HTMLSpanElement, MaterialIconProps>
         {name}
       </span>
     );
-  }
+  },
 );
 
 MaterialIcon.displayName = 'MaterialIcon';
 
 export default MaterialIcon;
-

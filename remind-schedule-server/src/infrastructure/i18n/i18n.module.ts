@@ -7,4 +7,3 @@ import { I18nService } from './i18n.service';
   exports: [I18nService],
 })
 export class I18nModule {}
-

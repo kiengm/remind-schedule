@@ -12,7 +12,17 @@
     "server:dev": "yarn --cwd remind-schedule-server dev",
     "client:dev": "yarn --cwd remind-schedule-client dev",
     "server:build": "yarn --cwd remind-schedule-server build",
-    "client:build": "yarn --cwd remind-schedule-client build"
+    "client:build": "yarn --cwd remind-schedule-client build",
+    "server:lint": "yarn --cwd remind-schedule-server lint",
+    "server:lint:fix": "yarn --cwd remind-schedule-server lint:fix",
+    "client:lint": "yarn --cwd remind-schedule-client lint",
+    "client:lint:fix": "yarn --cwd remind-schedule-client lint:fix",
+    "lint": "yarn server:lint && yarn client:lint",
+    "lint:fix": "yarn server:lint:fix && yarn client:lint:fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
-

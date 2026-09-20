@@ -39,5 +39,3 @@ export const UserNav: React.FC<UserNavProps> = ({ user, onLogout }) => {
     </div>
   );
 };
-
-

@@ -20,10 +20,9 @@ export const authApi = {
   },
 
   async refreshToken(refreshToken: string): Promise<RefreshTokenResponse> {
-    const res = await apiClient.post<ApiResponse<RefreshTokenResponse>>(
-      '/auth/refresh-token',
-      { refreshToken }
-    );
+    const res = await apiClient.post<ApiResponse<RefreshTokenResponse>>('/auth/refresh-token', {
+      refreshToken,
+    });
     return res.data.data;
   },
 
@@ -40,4 +39,3 @@ export const authApi = {
     return res.data.data;
   },
 };
-

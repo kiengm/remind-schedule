@@ -9,10 +9,22 @@ interface ReminderCardProps {
 }
 
 const priorityColors: Record<ReminderPriority, { bg: string; text: string; label: string }> = {
-  LOW: { bg: 'bg-emerald-50 text-emerald-700 border-emerald-200', text: 'text-emerald-700', label: 'Thấp' },
-  MEDIUM: { bg: 'bg-blue-50 text-blue-700 border-blue-200', text: 'text-blue-700', label: 'Bình thường' },
+  LOW: {
+    bg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    text: 'text-emerald-700',
+    label: 'Thấp',
+  },
+  MEDIUM: {
+    bg: 'bg-blue-50 text-blue-700 border-blue-200',
+    text: 'text-blue-700',
+    label: 'Bình thường',
+  },
   HIGH: { bg: 'bg-amber-50 text-amber-700 border-amber-200', text: 'text-amber-700', label: 'Cao' },
-  URGENT: { bg: 'bg-rose-50 text-rose-700 border-rose-200', text: 'text-rose-700', label: 'Khẩn cấp' },
+  URGENT: {
+    bg: 'bg-rose-50 text-rose-700 border-rose-200',
+    text: 'text-rose-700',
+    label: 'Khẩn cấp',
+  },
 };
 
 export const ReminderCard: React.FC<ReminderCardProps> = ({ reminder, onToggle, onDelete }) => {
@@ -37,8 +49,8 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({ reminder, onToggle, 
         isCompleted
           ? 'border-slate-200 bg-slate-50/70 opacity-75'
           : reminder.isOverdue
-          ? 'border-rose-300 ring-1 ring-rose-100'
-          : 'border-slate-200 hover:border-indigo-300'
+            ? 'border-rose-300 ring-1 ring-rose-100'
+            : 'border-slate-200 hover:border-indigo-300'
       }`}
     >
       <div className="flex items-start justify-between gap-4">
@@ -114,4 +126,3 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({ reminder, onToggle, 
     </div>
   );
 };
-

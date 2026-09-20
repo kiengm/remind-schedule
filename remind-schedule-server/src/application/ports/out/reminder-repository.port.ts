@@ -7,4 +7,3 @@ export interface IReminderRepositoryPort {
   update(reminder: ReminderEntity): Promise<ReminderEntity>;
   delete(id: string): Promise<boolean>;
 }
-

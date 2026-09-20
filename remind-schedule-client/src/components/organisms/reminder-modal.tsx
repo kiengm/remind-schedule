@@ -138,7 +138,11 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
             <Button type="button" variant="outline" onClick={onClose}>
               {t('common.cancel')}
             </Button>
-            <Button type="submit" disabled={loading} className="gap-1.5 shadow-sm shadow-primary/20">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="gap-1.5 shadow-sm shadow-primary/20"
+            >
               <Plus className="w-4 h-4" />
               {loading ? t('modal.creating') : t('modal.submitBtn')}
             </Button>
@@ -148,5 +152,3 @@ export const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose, o
     </div>
   );
 };
-
-

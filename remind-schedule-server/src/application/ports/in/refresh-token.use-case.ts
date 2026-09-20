@@ -10,4 +10,3 @@ export interface TokensResult {
 export interface IRefreshTokenUseCase {
   execute(command: RefreshTokenCommand): Promise<TokensResult>;
 }
-

@@ -13,12 +13,13 @@ export interface ReminderItemProps {
   onDelete: (id: string) => void;
 }
 
-const priorityBadgeVariantMap: Record<ReminderPriority, 'success' | 'info' | 'warning' | 'urgent'> = {
-  LOW: 'success',
-  MEDIUM: 'info',
-  HIGH: 'warning',
-  URGENT: 'urgent',
-};
+const priorityBadgeVariantMap: Record<ReminderPriority, 'success' | 'info' | 'warning' | 'urgent'> =
+  {
+    LOW: 'success',
+    MEDIUM: 'info',
+    HIGH: 'warning',
+    URGENT: 'urgent',
+  };
 
 export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, onDelete }) => {
   const { t, i18n } = useTranslation();
@@ -47,8 +48,8 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
         isCompleted
           ? 'opacity-70 bg-muted/40'
           : reminder.isOverdue
-          ? 'border-destructive/40 ring-1 ring-destructive/20'
-          : 'hover:border-primary/40'
+            ? 'border-destructive/40 ring-1 ring-destructive/20'
+            : 'hover:border-primary/40',
       )}
     >
       <div className="flex items-start justify-between gap-3.5">
@@ -69,9 +70,7 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
         {/* Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1.5">
-            <Badge variant={badgeVariant}>
-              {priorityLabel}
-            </Badge>
+            <Badge variant={badgeVariant}>{priorityLabel}</Badge>
 
             {reminder.isOverdue && !isCompleted && (
               <Badge variant="urgent" className="flex items-center gap-1 animate-pulse">
@@ -83,7 +82,7 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
           <h3
             className={cn(
               'text-base font-semibold text-foreground tracking-tight',
-              isCompleted && 'line-through text-muted-foreground'
+              isCompleted && 'line-through text-muted-foreground',
             )}
           >
             {reminder.title}
@@ -93,7 +92,7 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
             <p
               className={cn(
                 'text-sm mt-1 line-clamp-2 text-muted-foreground',
-                isCompleted && 'line-through'
+                isCompleted && 'line-through',
               )}
             >
               {reminder.description}
@@ -127,5 +126,3 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
     </Card>
   );
 };
-
-

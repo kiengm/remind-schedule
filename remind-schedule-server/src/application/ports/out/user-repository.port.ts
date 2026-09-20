@@ -8,5 +8,3 @@ export interface IUserRepositoryPort {
   update(user: UserEntity): Promise<UserEntity>;
   updateRefreshToken(userId: string, refreshTokenHash: string | null): Promise<void>;
 }
-
-

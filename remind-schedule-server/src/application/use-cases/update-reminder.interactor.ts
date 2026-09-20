@@ -1,6 +1,9 @@
 import { ReminderEntity } from '../../core/domain/entities/reminder.entity';
 import { ReminderStatus } from '../../core/domain/enums/reminder-status.enum';
-import { IUpdateReminderUseCase, UpdateReminderCommand } from '../ports/in/update-reminder.use-case';
+import {
+  IUpdateReminderUseCase,
+  UpdateReminderCommand,
+} from '../ports/in/update-reminder.use-case';
 import { IReminderRepositoryPort } from '../ports/out/reminder-repository.port';
 
 export class UpdateReminderInteractor implements IUpdateReminderUseCase {
@@ -12,7 +15,11 @@ export class UpdateReminderInteractor implements IUpdateReminderUseCase {
       throw new Error(`Reminder with ID "${command.id}" not found`);
     }
 
-    if (command.title !== undefined || command.description !== undefined || command.priority !== undefined) {
+    if (
+      command.title !== undefined ||
+      command.description !== undefined ||
+      command.priority !== undefined
+    ) {
       existing.updateDetails(command.title, command.description, command.priority);
     }
 
@@ -31,4 +38,3 @@ export class UpdateReminderInteractor implements IUpdateReminderUseCase {
     return await this.reminderRepository.update(existing);
   }
 }
-

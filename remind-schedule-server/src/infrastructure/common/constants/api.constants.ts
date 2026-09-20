@@ -31,11 +31,11 @@ export const ENDPOINTS = {
   // 2. Module Lịch nhắc nhở (Reminders)
   REMINDERS: {
     ROOT: `${API_PREFIX}/reminders`,
-    CREATE: '',            // POST /api/v1/reminders
-    LIST: '',              // GET  /api/v1/reminders
-    BY_ID: ':id',          // GET  /api/v1/reminders/:id
-    UPDATE: ':id',         // PATCH /api/v1/reminders/:id
-    DELETE: ':id',         // DELETE /api/v1/reminders/:id
+    CREATE: '', // POST /api/v1/reminders
+    LIST: '', // GET  /api/v1/reminders
+    BY_ID: ':id', // GET  /api/v1/reminders/:id
+    UPDATE: ':id', // PATCH /api/v1/reminders/:id
+    DELETE: ':id', // DELETE /api/v1/reminders/:id
     // Helper tạo URL động kèm tham số
     urlWithId: (id: string) => `/${API_PREFIX}/reminders/${id}`,
   },

@@ -21,7 +21,12 @@ export function FilterTabs<T extends string = string>({
   className,
 }: FilterTabsProps<T>) {
   return (
-    <div className={cn('flex items-center gap-1.5 p-1 bg-muted rounded-xl w-full sm:w-auto overflow-x-auto', className)}>
+    <div
+      className={cn(
+        'flex items-center gap-1.5 p-1 bg-muted rounded-xl w-full sm:w-auto overflow-x-auto',
+        className,
+      )}
+    >
       {options.map((tab) => {
         const isActive = activeKey === tab.key;
         return (
@@ -35,7 +40,7 @@ export function FilterTabs<T extends string = string>({
                 ? tab.highlight
                   ? 'bg-destructive/10 text-destructive shadow-sm font-semibold'
                   : 'bg-background text-primary shadow-sm font-semibold'
-                : 'text-muted-foreground hover:text-foreground'
+                : 'text-muted-foreground hover:text-foreground',
             )}
           >
             {tab.label} ({tab.count})

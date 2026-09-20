@@ -14,10 +14,7 @@ export interface AuthPageProps {
   defaultMode?: 'login' | 'signup';
 }
 
-export const AuthPage: React.FC<AuthPageProps> = ({
-  onSuccess,
-  defaultMode = 'login',
-}) => {
+export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, defaultMode = 'login' }) => {
   const { t } = useTranslation();
   const [mode, setMode] = useState<'login' | 'signup'>(defaultMode);
   const [email, setEmail] = useState('');
@@ -49,9 +46,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
         onSuccess(res.user, res.accessToken, res.refreshToken);
       }
     } catch (err: any) {
-      setErrorMessage(
-        err?.response?.data?.message || err?.message || t('auth.defaultError')
-      );
+      setErrorMessage(err?.response?.data?.message || err?.message || t('auth.defaultError'));
     } finally {
       setLoading(false);
     }
@@ -216,6 +211,4 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   );
 };
 
-
 export default AuthPage;
-

@@ -21,7 +21,7 @@ export const Avatar: React.FC<AvatarProps> = ({ name, src, size = 'md', classNam
       className={cn(
         'relative inline-flex items-center justify-center rounded-xl bg-primary/10 text-primary font-bold overflow-hidden select-none border border-primary/20',
         sizeClasses[size],
-        className
+        className,
       )}
       {...props}
     >
@@ -33,4 +33,3 @@ export const Avatar: React.FC<AvatarProps> = ({ name, src, size = 'md', classNam
     </div>
   );
 };
-

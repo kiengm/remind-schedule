@@ -105,7 +105,6 @@ export class UserEntity {
     this._updatedAt = new Date();
   }
 
-
   // Domain Logic & Invariants
   public updateProfile(name?: string, phone?: string | null, avatar?: string | null): void {
     if (name !== undefined) {
@@ -146,4 +145,3 @@ export class UserEntity {
     return emailRegex.test(email);
   }
 }
-

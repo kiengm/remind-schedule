@@ -14,4 +14,3 @@ export interface UpdateReminderCommand {
 export interface IUpdateReminderUseCase {
   execute(command: UpdateReminderCommand): Promise<ReminderEntity>;
 }
-

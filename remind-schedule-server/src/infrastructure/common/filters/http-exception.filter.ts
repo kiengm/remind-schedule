@@ -30,7 +30,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message: string | object = this.i18nService.t('common.internalServerError', currentLang);
 
-
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const res = exception.getResponse();
@@ -46,7 +45,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
           message = this.i18nService.translateValidationErrors(rawMsg as any, currentLang);
         } else {
           message = rawMsg.map((m) =>
-            typeof m === 'string' ? this.i18nService.translateMessage(m, currentLang) : m
+            typeof m === 'string' ? this.i18nService.translateMessage(m, currentLang) : m,
           );
         }
       } else if (typeof rawMsg === 'string') {
@@ -55,7 +54,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
         message = rawMsg;
       }
     } else if (exception instanceof Error) {
-
       if (exception.message.toLowerCase().includes('not found')) {
         status = HttpStatus.NOT_FOUND;
       } else {
@@ -65,7 +63,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     }
 
     this.logger.error(
-      `[${request.method}] ${request.url} - Lang: ${currentLang} - Status: ${status} - Error: ${JSON.stringify(message)}`
+      `[${request.method}] ${request.url} - Lang: ${currentLang} - Status: ${status} - Error: ${JSON.stringify(message)}`,
     );
 
     response.status(status).json({
@@ -77,5 +75,3 @@ export class AllExceptionsFilter implements ExceptionFilter {
     });
   }
 }
-
-
