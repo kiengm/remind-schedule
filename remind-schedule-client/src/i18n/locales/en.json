@@ -79,5 +79,35 @@
     "errTitleRequired": "Please enter reminder title",
     "errDateRequired": "Please select scheduled time",
     "defaultError": "An error occurred while creating reminder"
+  },
+  "form": {
+    "createTitle": "Create New Reminder",
+    "editTitle": "Edit Reminder",
+    "createSubtitle": "Add a new reminder to your task schedule",
+    "editSubtitle": "Update the details of your scheduled reminder",
+    "backToList": "Back to List",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "createBtn": "Create Reminder",
+    "creating": "Creating...",
+    "statusLabel": "Status",
+    "statusPending": "Pending",
+    "statusCompleted": "Completed",
+    "loadingData": "Loading reminder details...",
+    "notFound": "Reminder not found or may have been deleted",
+    "editAction": "Edit"
+  },
+  "feedback": {
+    "errorTitle": "Error Occurred",
+    "errorDefault": "An unexpected error occurred. Please try again later.",
+    "closeBtn": "Close",
+    "createSuccess": "Reminder created successfully!",
+    "updateSuccess": "Reminder updated successfully!",
+    "deleteSuccess": "Reminder deleted successfully!",
+    "toggleCompleted": "Reminder marked as completed!",
+    "togglePending": "Reminder marked as pending!",
+    "loginSuccess": "Signed in successfully! Welcome back.",
+    "registerSuccess": "Account registered successfully!",
+    "logoutSuccess": "Signed out successfully."
   }
 }

@@ -79,5 +79,35 @@
     "errTitleRequired": "Vui lòng nhập tiêu đề lời nhắc",
     "errDateRequired": "Vui lòng chọn thời gian nhắc",
     "defaultError": "Có lỗi xảy ra khi tạo lời nhắc"
+  },
+  "form": {
+    "createTitle": "Tạo lời nhắc mới",
+    "editTitle": "Chỉnh sửa lời nhắc",
+    "createSubtitle": "Thêm một lời nhắc mới vào danh sách công việc của bạn",
+    "editSubtitle": "Cập nhật thông tin chi tiết của lời nhắc",
+    "backToList": "Quay lại danh sách",
+    "saveChanges": "Lưu thay đổi",
+    "saving": "Đang lưu...",
+    "createBtn": "Tạo lời nhắc",
+    "creating": "Đang tạo...",
+    "statusLabel": "Trạng thái",
+    "statusPending": "Đang chờ thực hiện",
+    "statusCompleted": "Đã hoàn thành",
+    "loadingData": "Đang tải dữ liệu lời nhắc...",
+    "notFound": "Không tìm thấy lời nhắc hoặc lời nhắc đã bị xóa",
+    "editAction": "Chỉnh sửa"
+  },
+  "feedback": {
+    "errorTitle": "Thông báo lỗi",
+    "errorDefault": "Đã có lỗi xảy ra trong quá trình xử lý. Vui lòng thử lại sau.",
+    "closeBtn": "Đóng",
+    "createSuccess": "Tạo lời nhắc mới thành công!",
+    "updateSuccess": "Cập nhật lời nhắc thành công!",
+    "deleteSuccess": "Đã xóa lời nhắc thành công!",
+    "toggleCompleted": "Đã hoàn thành lời nhắc!",
+    "togglePending": "Đã chuyển lời nhắc về đang chờ!",
+    "loginSuccess": "Đăng nhập thành công! Chào mừng bạn trở lại.",
+    "registerSuccess": "Đăng ký tài khoản thành công!",
+    "logoutSuccess": "Đã đăng xuất khỏi hệ thống."
   }
 }

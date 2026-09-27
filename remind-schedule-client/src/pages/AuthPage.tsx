@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Mail, Lock, User as UserIcon, Phone, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useFeedback } from '@/contexts/FeedbackContext';
 import { AuthHeader } from '@/components/organisms/auth-header';
 import { Button } from '@/components/atoms/button';
 import { FormField } from '@/components/molecules/form-field';
@@ -16,6 +17,7 @@ export interface AuthPageProps {
 
 export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, defaultMode = 'login' }) => {
   const { t } = useTranslation();
+  const { showSuccess, showError } = useFeedback();
   const [mode, setMode] = useState<'login' | 'signup'>(defaultMode);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +37,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, defaultMode = 'lo
     try {
       if (isLogin) {
         const res = await authApi.login({ email, password });
+        showSuccess(t('feedback.loginSuccess'));
         onSuccess(res.user, res.accessToken, res.refreshToken);
       } else {
         const res = await authApi.register({
@@ -43,10 +46,13 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, defaultMode = 'lo
           password,
           phone: phone.trim() || undefined,
         });
+        showSuccess(t('feedback.registerSuccess'));
         onSuccess(res.user, res.accessToken, res.refreshToken);
       }
     } catch (err: any) {
-      setErrorMessage(err?.response?.data?.message || err?.message || t('auth.defaultError'));
+      const message = err?.response?.data?.message || err?.message || t('auth.defaultError');
+      setErrorMessage(message);
+      showError(message, t('feedback.errorTitle'));
     } finally {
       setLoading(false);
     }
