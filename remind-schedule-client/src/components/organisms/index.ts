@@ -4,3 +4,4 @@ export * from './reminder-stats-bar';
 export * from './reminder-modal';
 export * from './auth-dialog';
 export * from './auth-header';
+export * from './error-modal';

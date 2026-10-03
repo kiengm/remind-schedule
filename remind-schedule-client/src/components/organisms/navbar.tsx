@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CalendarDays, Plus, RefreshCw, LogIn } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from '@/hooks/useRouter';
 import { Button } from '../atoms/button';
 import { UserNav } from '../molecules/user-nav';
 import { LanguageSwitcher } from '../molecules/language-switcher';
@@ -10,7 +11,7 @@ export interface NavbarProps {
   currentUser: User | null;
   loading?: boolean;
   onRefresh: () => void;
-  onCreateOpen: () => void;
+  onCreateOpen?: () => void;
   onAuthOpen: () => void;
   onLogout: () => void;
 }
@@ -24,13 +25,25 @@ export const Navbar: React.FC<NavbarProps> = ({
   onLogout,
 }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleCreate = () => {
+    if (onCreateOpen) {
+      onCreateOpen();
+    } else {
+      router.push('/remind/new');
+    }
+  };
 
   return (
     <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Logo & Title */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-violet-500 text-primary-foreground flex items-center justify-center shadow-md shadow-primary/20">
+        <div
+          className="flex items-center gap-3 cursor-pointer select-none group"
+          onClick={() => router.push('/')}
+        >
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-violet-500 text-primary-foreground flex items-center justify-center shadow-md shadow-primary/20 transition-transform group-hover:scale-105">
             <CalendarDays className="w-5 h-5" />
           </div>
           <div>
@@ -62,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <Button
             variant="default"
             size="sm"
-            onClick={onCreateOpen}
+            onClick={handleCreate}
             className="inline-flex items-center gap-1.5 rounded-xl shadow-sm shadow-primary/20"
           >
             <Plus className="w-4 h-4" />

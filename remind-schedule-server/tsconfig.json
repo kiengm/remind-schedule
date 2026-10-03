@@ -18,10 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@core/*": ["src/core/*"],
-      "@application/*": ["src/application/*"],
-      "@adapters/*": ["src/adapters/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
+      "@common/*": ["src/common/*"],
       "@modules/*": ["src/modules/*"]
     }
   }

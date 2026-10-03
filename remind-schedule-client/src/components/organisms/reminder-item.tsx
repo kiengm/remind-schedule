@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Calendar, CheckCircle2, Circle, Clock, Trash2, AlertTriangle } from 'lucide-react';
+import { Calendar, CheckCircle2, Circle, Clock, Trash2, AlertTriangle, Pencil } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from '@/hooks/useRouter';
 import { Card } from '../atoms/card';
 import { Badge } from '../atoms/badge';
 import { Button } from '../atoms/button';
@@ -11,6 +12,7 @@ export interface ReminderItemProps {
   reminder: Reminder;
   onToggle: (reminder: Reminder) => void;
   onDelete: (id: string) => void;
+  onEdit?: (reminder: Reminder) => void;
 }
 
 const priorityBadgeVariantMap: Record<ReminderPriority, 'success' | 'info' | 'warning' | 'urgent'> =
@@ -21,7 +23,13 @@ const priorityBadgeVariantMap: Record<ReminderPriority, 'success' | 'info' | 'wa
     URGENT: 'urgent',
   };
 
-export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, onDelete }) => {
+export const ReminderItem: React.FC<ReminderItemProps> = ({
+  reminder,
+  onToggle,
+  onDelete,
+  onEdit,
+}) => {
+  const router = useRouter();
   const { t, i18n } = useTranslation();
   const isCompleted = reminder.status === 'COMPLETED';
   const scheduledDate = new Date(reminder.scheduledAt);
@@ -112,16 +120,27 @@ export const ReminderItem: React.FC<ReminderItemProps> = ({ reminder, onToggle, 
           </div>
         </div>
 
-        {/* Delete button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => onDelete(reminder.id)}
-          className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl shrink-0"
-          title={t('reminders.deleteTitle')}
-        >
-          <Trash2 className="w-4 h-4" />
-        </Button>
+        {/* Actions (Edit & Delete) */}
+        <div className="flex items-center gap-1 shrink-0">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => (onEdit ? onEdit(reminder) : router.push(`/remind/edit/${reminder.id}`))}
+            className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-xl"
+            title={t('form.editAction')}
+          >
+            <Pencil className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onDelete(reminder.id)}
+            className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl"
+            title={t('reminders.deleteTitle')}
+          >
+            <Trash2 className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
     </Card>
   );
