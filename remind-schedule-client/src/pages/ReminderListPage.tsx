@@ -8,6 +8,7 @@ import { SearchBox, FilterTabs, FilterTabOption } from '@/components/molecules';
 import { Button, Card, CardContent, MaterialIcon } from '@/components/atoms';
 import { Reminder, ReminderStatus } from '@/types/reminder';
 import { User } from '@/types/auth';
+import { reminderApi } from '@/services/api';
 
 export interface ReminderListPageProps {
   currentUser: User | null;
@@ -35,6 +36,22 @@ export const ReminderListPage: React.FC<ReminderListPageProps> = ({
   const { showSuccess, showError } = useFeedback();
   const [filterStatus, setFilterStatus] = useState<'ALL' | ReminderStatus | 'OVERDUE'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
+  const [downloadingTemplate, setDownloadingTemplate] = useState(false);
+
+  const handleDownloadTemplate = async () => {
+    try {
+      setDownloadingTemplate(true);
+      await reminderApi.downloadTemplate();
+      showSuccess(t('excel.downloadSuccess'));
+    } catch (err: any) {
+      showError(
+        err?.response?.data?.message || err?.message || t('excel.downloadError'),
+        t('feedback.errorTitle'),
+      );
+    } finally {
+      setDownloadingTemplate(false);
+    }
+  };
 
   const handleDelete = async (id: string) => {
     try {
@@ -130,14 +147,35 @@ export const ReminderListPage: React.FC<ReminderListPageProps> = ({
         {/* Organism: Stats Bar */}
         <ReminderStatsBar reminders={reminders} />
 
-        {/* Toolbar: Molecules FilterTabs + SearchBox */}
-        <Card className="p-4 mb-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Toolbar: Molecules FilterTabs + SearchBox + Excel Actions */}
+        <Card className="p-4 mb-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
           <FilterTabs options={filterOptions} activeKey={filterStatus} onSelect={setFilterStatus} />
-          <SearchBox
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder={t('filters.searchPlaceholder')}
-          />
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            <SearchBox
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder={t('filters.searchPlaceholder')}
+            />
+            <Button
+              variant="outline"
+              size="default"
+              onClick={handleDownloadTemplate}
+              disabled={downloadingTemplate}
+              className="rounded-xl gap-2 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 shrink-0 font-medium"
+              title={t('excel.downloadTemplate')}
+            >
+              <MaterialIcon
+                name={downloadingTemplate ? 'progress_activity' : 'description'}
+                size={18}
+                className={
+                  downloadingTemplate ? 'animate-spin' : 'text-emerald-600 dark:text-emerald-400'
+                }
+              />
+              <span className="hidden sm:inline">
+                {downloadingTemplate ? t('excel.downloading') : t('excel.downloadTemplate')}
+              </span>
+            </Button>
+          </div>
         </Card>
 
         {/* Reminder Items Grid */}

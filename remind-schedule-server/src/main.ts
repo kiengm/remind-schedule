@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './modules/app.module';
-import { AllExceptionsFilter } from './infrastructure/common/filters/http-exception.filter';
-import { TransformResponseInterceptor } from './infrastructure/common/interceptors/transform-response.interceptor';
-import { I18nService } from './infrastructure/i18n/i18n.service';
+import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './common/filters/http-exception.filter';
+import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor';
+import { I18nService } from './common/i18n/i18n.service';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');

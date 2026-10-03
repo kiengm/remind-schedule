@@ -109,5 +109,13 @@
     "loginSuccess": "Đăng nhập thành công! Chào mừng bạn trở lại.",
     "registerSuccess": "Đăng ký tài khoản thành công!",
     "logoutSuccess": "Đã đăng xuất khỏi hệ thống."
+  },
+  "excel": {
+    "downloadTemplate": "Tải file mẫu Excel",
+    "downloading": "Đang tải file...",
+    "downloadSuccess": "Tải file mẫu Excel thành công!",
+    "downloadError": "Không thể tải file mẫu Excel. Vui lòng thử lại sau.",
+    "importExcel": "Nhập Excel",
+    "uploadTitle": "Tải lên file Excel"
   }
 }

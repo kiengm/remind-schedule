@@ -109,5 +109,13 @@
     "loginSuccess": "Signed in successfully! Welcome back.",
     "registerSuccess": "Account registered successfully!",
     "logoutSuccess": "Signed out successfully."
+  },
+  "excel": {
+    "downloadTemplate": "Download Template",
+    "downloading": "Downloading...",
+    "downloadSuccess": "Template downloaded successfully!",
+    "downloadError": "Failed to download template. Please try again.",
+    "importExcel": "Import Excel",
+    "uploadTitle": "Upload Excel File"
   }
 }
